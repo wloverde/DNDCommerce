@@ -10,6 +10,11 @@ import SearchForm from "../SearchForm/SearchForm";
 const Navbar = () => {
   const [displaySearch, setDisplaySearch] = useState(false);
 
+  const clickTest = (event) => {
+    // test function that we can reassign as a query depending on option clicked.
+    console.log(`click ${event.target.innerHTML}`);
+  };
+
   return (
     <nav className='content-flex'>
       <div className='search-wrapper'>
@@ -30,6 +35,22 @@ const Navbar = () => {
         <img src={wishlist} />
         <img src={shoppingBag} />
         <img src={account} />
+      </div>
+      <div className='line-break' />
+      <div className='category-list'>
+        <ul className='categories'>
+          <li onClick={clickTest}>Melee</li>
+          <li onClick={clickTest}>Magic</li>
+          <li onClick={clickTest}>Ranged</li>
+          <li onClick={clickTest}>Armor</li>
+          <li onClick={clickTest}>Consumables</li>
+        </ul>
+      </div>
+      <div className='flavor-text'>
+        <p>
+          ✨Trout has the sale if you have the scales. We always roll nat
+          20&#39;s so delivery is instant using Teleportation!✨
+        </p>
       </div>
     </nav>
   );
