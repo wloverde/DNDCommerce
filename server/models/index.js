@@ -1,1 +1,3 @@
-//empty file so github creates the folder
+const User = require('./User');
+
+module.exports = {User};
