@@ -20,7 +20,7 @@ const productModel = new Schema(
         },
         categoryId: {
             type: Schema.Types.ObjectId,
-            ref: 'Category',
+            ref: 'category',
         },  
     },
     {
@@ -30,6 +30,6 @@ const productModel = new Schema(
 );
 
 
-const Product = model('Product', orderSchema);
+const Product = model('product', orderSchema);
 
 module.exports = Product;
