@@ -1,11 +1,21 @@
-import "./App.css";
-import Navbar from "./components/Navbar/Navbar";
-import dragon from "./assets/images/homepage-dragon.jpg";
+import React, { useState } from 'react';
+import Navbar from './components/Navbar/Navbar';
+import Category from './components/Category/Category';
+import dragon from './assets/images/homepage-dragon.jpg';
 
 function App() {
+  const [selectedCategory, setSelectedCategory] = useState('');
+
+  // Define a callback function to set the selected category
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
+  };
+
   return (
-    <div className='continer-responsive'>
-      <Navbar />
+    <div className='container-responsive'>
+      {/* Pass the callback function as a prop */}
+      <Navbar handleCategoryClick={handleCategoryClick} />
+      <Category selectedCategory={selectedCategory} />
       {/* image test, can be resized, replaced, etc. */}
       <div style={{ display: "flex", justifyContent: "center" }}>
         <img
