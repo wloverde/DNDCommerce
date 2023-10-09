@@ -7,12 +7,13 @@ import shoppingBag from "../../assets/images/shopping-bag.png";
 import account from "../../assets/images/account.png";
 import SearchForm from "../SearchForm/SearchForm";
 
-const Navbar = () => {
+const Navbar = ({ handleCategoryClick }) => {
   const [displaySearch, setDisplaySearch] = useState(false);
 
   const clickTest = (event) => {
-    // test function that we can reassign as a query depending on option clicked.
-    console.log(`click ${event.target.innerHTML}`);
+    const category = event.target.innerHTML;
+    handleCategoryClick(category); // Call the callback function
+    console.log(`click ${category}`);
   };
 
   return (
