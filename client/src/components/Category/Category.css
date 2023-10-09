@@ -1,0 +1,22 @@
+.category-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.item-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-height: 5 *
+    (/* Height of one row */ /* Specify the height you want for each row */);
+  overflow-y: auto; /* Enable vertical scrolling if more than 5 rows */
+}
+
+.item-card {
+  width: calc(25% - 20px); /* Four items per row with spacing */
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}

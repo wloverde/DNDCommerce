@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./Category.css";
 /**
  * Renders a list of items based on the selected category.
  * @param {Object} props - The component props.
@@ -50,20 +51,17 @@ const Category = ({ selectedCategory }) => {
   }, [selectedCategory]);
 
   return (
-    <div>
+    <div className="category-container">
       <h2>{categoryTitle}</h2>
-      <ul>
+      <div className="item-list">
         {categoryItems.map((item) => (
-          <li key={item.id}>
-            <div>
-              <h3>{item.name}</h3>
-              <p>{item.description}</p>
-              <p>Price: ${item.price}</p>
-              {/* Render other item details as needed */}
-            </div>
-          </li>
+          <div key={item.id} className="item-card">
+            <h3>{item.name}</h3>
+            <p>{item.description}</p>
+            <p>Price: ${item.price}</p>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
