@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
  * Renders a list of items based on the selected category.
  * @param {Object} props - The component props.
  * @param {string} props.selectedCategory - The selected category to fetch items for.
- * @returns {JSX.Element} - The Category component.
  */
 const Category = ({ selectedCategory }) => {
   // State to hold the items for the selected category
@@ -13,22 +12,22 @@ const Category = ({ selectedCategory }) => {
   let categoryTitle = "";
   switch (selectedCategory) {
     case "Melee":
-      categoryTitle = "Melee Items";
+      categoryTitle = "Melee";
       break;
     case "Magic":
-      categoryTitle = "Magic Items";
+      categoryTitle = "Magic";
       break;
     case "Ranged":
-      categoryTitle = "Ranged Items";
+      categoryTitle = "Ranged";
       break;
     case "Armor":
-      categoryTitle = "Armor Items";
+      categoryTitle = "Armor";
       break;
     case "Consumable":
-      categoryTitle = "Consumable Items";
+      categoryTitle = "Consumables";
       break;
     default:
-      categoryTitle = "Consumable Items";
+      categoryTitle = "Consumables";
       break;
   }
   // Fetch items based on the selected category
