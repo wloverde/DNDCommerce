@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import Router from "./Router";
 import Navbar from "./components/Navbar/Navbar";
 import Category from "./components/Category/Category";
 import dragon from "./assets/images/homepage-dragon.jpg";
+
 
 function App() {
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -16,6 +18,8 @@ function App() {
     <div className='container-responsive'>
       {/* Pass the callback function as a prop */}
       <Navbar handleCategoryClick={handleCategoryClick} />
+      <Category selectedCategory={selectedCategory} />
+      <Router />
       {/* image test, can be resized, replaced, etc. */}
       <div style={{ display: "flex", justifyContent: "center" }}>
         <img
@@ -23,7 +27,6 @@ function App() {
           style={{ borderRadius: "12px", boxShadow: "0 0 8px" }}
         />
       </div>
-      <Category selectedCategory={selectedCategory} />
     </div>
   );
 }

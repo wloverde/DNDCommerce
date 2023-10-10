@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./Category.css";
 /**
  * Renders a list of items based on the selected category.
@@ -51,19 +52,19 @@ const Category = ({ selectedCategory }) => {
   }, [selectedCategory]);
 
   return (
-    <div className='category-container'>
+    <div className="category-container">
       <h2>{categoryTitle}</h2>
-      <div className='item-list'>
+      <div className="item-list">
         {categoryItems.map((item) => (
-          <ItemCard
-            key={item.id}
-            itemName={item.name}
-            itemImage={item.image} // Replace with your actual item image field
-            itemTags={item.tags} // Replace with your actual item tags field
-            itemPrice={item.price}
-            itemStock={item.stock} // Replace with your actual item stock field
-            // itemDiscount={item.discount}  Replace with your actual item discount field
-          />
+          <Link to={`/item/${item.id}`} key={item.id}>
+            <ItemCard
+              itemName={item.name}
+              itemImage={item.image}
+              itemTags={item.tags}
+              itemPrice={item.price}
+              itemStock={item.stock}
+            />
+          </Link>
         ))}
       </div>
     </div>
