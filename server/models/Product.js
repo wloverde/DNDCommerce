@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 
 // schema for Product model
-const productModel = new Schema(
+const productSchema = new Schema(
     {
         // adds price, gets price as value with two decimals, sets price as cents
         price: {
@@ -14,13 +14,15 @@ const productModel = new Schema(
             type: Number,
             required: true,
         },
+        imgLink: {
+            type: String
+        },
         name: {
             type: String,
             required: true,
         },
-        categoryId: {
-            type: Schema.Types.ObjectId,
-            ref: 'category',
+        category: {
+            type: String
         },  
     },
     {
@@ -30,6 +32,6 @@ const productModel = new Schema(
 );
 
 
-const Product = model('product', orderSchema);
+const Product = model('product', productSchema);
 
 module.exports = Product;
