@@ -3,18 +3,19 @@ const { Schema, model } = require('mongoose');
 // schema for Product model
 const productSchema = new Schema(
     {
-        // adds price, gets price as value with two decimals, sets price as cents
+       
         price: {
             type: Number,
-            required: true, 
-            get: p => (p/100).toFixed(2),
-            set: p => p*100
+            required: true,
+            min: 0.00  
         },
         quantity: {
             type: Number,
             required: true,
+            min: 0,
+            default: 0
         },
-        imgLink: {
+        image: {
             type: String
         },
         name: {
@@ -24,6 +25,9 @@ const productSchema = new Schema(
         category: {
             type: String
         },  
+        description: {
+            type: String
+        }
     },
     {
         toJSON: { getters: true }
@@ -32,6 +36,6 @@ const productSchema = new Schema(
 );
 
 
-const Product = model('product', productSchema);
+const Product = model('Product', productSchema);
 
 module.exports = Product;

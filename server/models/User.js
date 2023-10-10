@@ -1,5 +1,6 @@
-const { Schema, model } = require('mongoose');
+const { Schema } = require('mongoose');
 const bcrypt = require('bcrypt');
+const Order = require('./Order');
 
 // Schema for User Model
 const userSchema = new Schema(
@@ -22,12 +23,7 @@ const userSchema = new Schema(
             required: true,
             minlength: 8,
         },
-        orders: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: 'Order'
-            }
-        ],
+        orders: [Order.schema],
 
     }
 );
@@ -48,6 +44,6 @@ userSchema.methods.isCorrectPassword = async function (password) {
 };
 
 
-const User = model('user', userSchema);
+const User = model('User', userSchema);
 
 module.exports = User;
