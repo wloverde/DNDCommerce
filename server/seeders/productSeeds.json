@@ -64,6 +64,12 @@
         "price": 999,
         "quanity": 1,
         "category": "Armor"
+    },
+    {
+        "name": "Hennessy",
+        "price": 1399,
+        "quanity": 5,
+        "category": "Consumables"
     }
 
 ]
