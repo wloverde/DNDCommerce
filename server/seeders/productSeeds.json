@@ -29,4 +29,11 @@
         "quantity": 3,
         "category": "Melee"
     }
+    {
+        "name": "Magic Robes",
+        "price": 200,
+        "quantity": 5,
+        "category": "Magic"
+    },
+    
 ]
