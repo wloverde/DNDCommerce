@@ -1,0 +1,17 @@
+[
+    {
+        "name" : "Melee"
+    },
+    {
+        "name": "Magic"
+    },
+    {
+        "name": "Ranged"
+    },
+    {
+        "name": "Armor"
+    },
+    {
+        "name": "Consumables"
+    }
+]
