@@ -40,6 +40,12 @@
         "price": 75,
         "quanity": 10,
         "category": "Magic"
+    },
+    {
+        "name": "Quiver",
+        "price": 75,
+        "quantity": 15,
+        "category": "Ranged"
     }
 
 ]
