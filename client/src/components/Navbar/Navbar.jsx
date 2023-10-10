@@ -13,7 +13,6 @@ const Navbar = ({ handleCategoryClick }) => {
   const clickTest = (event) => {
     const category = event.target.innerHTML;
     handleCategoryClick(category); // Call the callback function
-    console.log(`click ${category}`);
   };
 
   return (
@@ -40,6 +39,7 @@ const Navbar = ({ handleCategoryClick }) => {
       <div className='line-break' />
       <div className='category-list'>
         <ul className='categories'>
+          {/* render the cagetories with a fetch request */}
           <li onClick={clickTest}>Melee</li>
           <li onClick={clickTest}>Magic</li>
           <li onClick={clickTest}>Ranged</li>

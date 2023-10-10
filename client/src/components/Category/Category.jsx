@@ -51,11 +51,11 @@ const Category = ({ selectedCategory }) => {
   }, [selectedCategory]);
 
   return (
-    <div className="category-container">
+    <div className='category-container'>
       <h2>{categoryTitle}</h2>
-      <div className="item-list">
+      <div className='item-list'>
         {categoryItems.map((item) => (
-          <div key={item.id} className="item-card">
+          <div key={item.id} className='item-card'>
             <h3>{item.name}</h3>
             <p>{item.description}</p>
             <p>Price: ${item.price}</p>
