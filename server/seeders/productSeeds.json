@@ -46,6 +46,24 @@
         "price": 75,
         "quantity": 15,
         "category": "Ranged"
+    },
+    {
+        "name": "Shiesty",
+        "price": 999,
+        "quantity": 1,
+        "category": "Armor"
+    },
+    {
+        "name": "Glock-9",
+        "price": 1999,
+        "quanity": 1,
+        "category": "Ranged"
+    },
+    {
+        "name": "Black Forces",
+        "price": 999,
+        "quanity": 1,
+        "category": "Armor"
     }
 
 ]
