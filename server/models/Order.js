@@ -3,8 +3,8 @@ const { Schema, model } = require('mongoose');
 // Schema for Order model
 const orderSchema = new Schema(
     {
-        // adds price, gets price as value with two decimals, sets price as cents
-        price: {
+        // adds total, gets total as value with two decimals, sets total as cents
+        total: {
             type: Number,
             required: true,
             get: p => (p / 100).toFixed(2),
