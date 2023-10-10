@@ -55,11 +55,15 @@ const Category = ({ selectedCategory }) => {
       <h2>{categoryTitle}</h2>
       <div className='item-list'>
         {categoryItems.map((item) => (
-          <div key={item.id} className='item-card'>
-            <h3>{item.name}</h3>
-            <p>{item.description}</p>
-            <p>Price: ${item.price}</p>
-          </div>
+          <ItemCard
+            key={item.id}
+            itemName={item.name}
+            itemImage={item.image} // Replace with your actual item image field
+            itemTags={item.tags} // Replace with your actual item tags field
+            itemPrice={item.price}
+            itemStock={item.stock} // Replace with your actual item stock field
+            // itemDiscount={item.discount}  Replace with your actual item discount field
+          />
         ))}
       </div>
     </div>
