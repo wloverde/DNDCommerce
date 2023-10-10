@@ -22,5 +22,11 @@
         "price": 300,
         "quantity": 2,
         "category": "Magic"
+    },
+    {
+        "name": "2 Handed Sword",
+        "price": 275,
+        "quantity": 3,
+        "category": "Melee"
     }
 ]
