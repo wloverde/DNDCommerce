@@ -25,5 +25,8 @@
   "devDependencies": {
     "concurrently": "^5.1.0"
   },
-  "homepage": "https://github.com/wloverde/DNDCommerce#readme"
+  "homepage": "https://github.com/wloverde/DNDCommerce#readme",
+  "dependencies": {
+    "serve": "^14.2.1"
+  }
 }
