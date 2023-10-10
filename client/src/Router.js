@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import App from './App';
 // import LoginPage from './LoginPage'; // Import your login page component
-import ItemPage from './ItemPage'; // Import your item description page component
+import ItemPage from './pages/ItemPage'; // Import your item description page component
 
 const AppRouter = () => {
   return (
