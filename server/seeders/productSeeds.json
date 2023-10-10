@@ -16,5 +16,11 @@
        "price": 75,
        "quantity": 5,
        "category": "Melee"
+    },
+    {
+        "name": "Staff",
+        "price": 300,
+        "quantity": 2,
+        "category": "Magic"
     }
 ]
