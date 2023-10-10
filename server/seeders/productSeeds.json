@@ -10,5 +10,11 @@
         "price": 100,
         "quantity": 10,
         "category": "Ranged"
+    },
+    {
+       "name": "Shield",
+       "price": 75,
+       "quantity": 5,
+       "category": "Melee"
     }
 ]
