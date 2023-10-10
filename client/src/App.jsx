@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import Router from "./Router";
 import Navbar from "./components/Navbar/Navbar";
 import Category from "./components/Category/Category";
 import dragon from "./assets/images/homepage-dragon.jpg";
+
 
 function App() {
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -14,6 +16,7 @@ function App() {
 
   return (
     <div className='container-responsive'>
+      <Router />
       {/* Pass the callback function as a prop */}
       <Navbar handleCategoryClick={handleCategoryClick} />
       {/* image test, can be resized, replaced, etc. */}

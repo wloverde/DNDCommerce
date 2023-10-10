@@ -1,5 +1,6 @@
 import "./Navbar.css";
 import { useState } from "react";
+import { Link } from 'react-router-dom';
 import twistedTrout from "../../assets/images/twisted-trout.svg";
 import search from "../../assets/images/magnifying-glass.svg";
 import wishlist from "../../assets/images/heart.png";
