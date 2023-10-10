@@ -2,7 +2,13 @@
     {
         "name": "Sword",
         "price": 150,
-        "quantity": 10
-        
+        "quantity": 10,
+        "category": "Melee"
+    },
+    {
+        "name": "Bow",
+        "price": 100,
+        "quantity": 10,
+        "category": "Ranged"
     }
 ]
