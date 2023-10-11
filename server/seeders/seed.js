@@ -148,7 +148,7 @@ db.once('open', async () => {
 
     const orders = await Order.insertMany([{
         "products":  [products[0]._id, products[0]._id, products[1]._id]
-    }]);
+    }]) 
 
     // seeding User
     await User.deleteMany();
