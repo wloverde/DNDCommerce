@@ -76,6 +76,13 @@
         "price": 50,
         "quanity": 100,
         "category": "Consumables"
-    }
+    },
+    {
+        "name": "Mana Potion",
+        "price": 65,
+        "quanity": 100,
+        "category": "Consumables"
+    },
+    
 
 ]
