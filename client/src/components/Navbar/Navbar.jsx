@@ -1,19 +1,19 @@
-import "./Navbar.css";
-import { useState } from "react";
+import './Navbar.css';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import twistedTrout from "../../assets/images/twisted-trout.svg";
-import search from "../../assets/images/magnifying-glass.svg";
-import wishlist from "../../assets/images/heart.png";
-import shoppingBag from "../../assets/images/shopping-bag.png";
-import account from "../../assets/images/account.png";
-import SearchForm from "../SearchForm/SearchForm";
+import twistedTrout from '../../assets/images/twisted-trout.svg';
+import search from '../../assets/images/magnifying-glass.svg';
+import wishlist from '../../assets/images/heart.png';
+import shoppingBag from '../../assets/images/shopping-bag.png';
+import account from '../../assets/images/account.png';
+import SearchForm from '../SearchForm/SearchForm';
 
-const Navbar = ({ handleCategoryClick }) => {
+const Navbar = ({ setSelectedCategory }) => {
   const [displaySearch, setDisplaySearch] = useState(false);
 
-  const clickTest = (event) => {
+  const categoryClick = (event) => {
     const category = event.target.innerHTML;
-    handleCategoryClick(category); // Call the callback function
+    setSelectedCategory(category); // Call the callback function
   };
 
   return (
@@ -41,14 +41,14 @@ const Navbar = ({ handleCategoryClick }) => {
       <div className='category-list'>
         <ul className='categories'>
           {/* render the cagetories with a fetch request */}
-          <li onClick={clickTest}>Melee</li>
-          <li onClick={clickTest}>Magic</li>
-          <li onClick={clickTest}>Ranged</li>
-          <li onClick={clickTest}>Armor</li>
-          <li onClick={clickTest}>Consumables</li>
+          <li onClick={categoryClick}>Melee</li>
+          <li onClick={categoryClick}>Magic</li>
+          <li onClick={categoryClick}>Ranged</li>
+          <li onClick={categoryClick}>Armor</li>
+          <li onClick={categoryClick}>Consumables</li>
         </ul>
       </div>
-      <div className='flavor-text'>
+      <div className='slogan-text'>
         <p>
           ✨Trout has the sale if you have the scales. We always roll nat
           20&#39;s so delivery is instant using Teleportation!✨

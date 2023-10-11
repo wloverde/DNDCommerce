@@ -17,7 +17,7 @@ function App() {
   return (
     <div className='container-responsive'>
       {/* Pass the callback function as a prop */}
-      <Navbar handleCategoryClick={handleCategoryClick} />
+      <Navbar setSelectedCategory={setSelectedCategory} />
       <Category selectedCategory={selectedCategory} />
       <Router />
       {/* image test, can be resized, replaced, etc. */}
