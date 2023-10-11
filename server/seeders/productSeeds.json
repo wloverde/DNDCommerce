@@ -83,6 +83,12 @@
         "quanity": 100,
         "category": "Consumables"
     },
-    
+    {
+        "name": "Black & Mild",
+        "price": 1,
+        "quanity": 1000,
+        "category": "Consumables"
+    }
+
 
 ]
