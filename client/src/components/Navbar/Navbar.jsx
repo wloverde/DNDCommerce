@@ -29,13 +29,17 @@ const Navbar = ({ setSelectedCategory }) => {
       </div>
       <div className='image-wrapper'>
         <span>Twisted</span>
-        <img src={twistedTrout} />
+        <Link to={'/'}>
+          <img src={twistedTrout} />
+        </Link>
         <span>Trout</span>
       </div>
       <div className='user-icons-wrapper'>
         <img src={wishlist} />
-        <img src={shoppingBag} />
-        <img src={account} />
+        <img src={shoppingBag} onClick={() => window.location('/checkout')} />
+        <Link to={'/profile'}>
+          <img src={account} />
+        </Link>
       </div>
       <div className='line-break' />
       <div className='category-list'>
