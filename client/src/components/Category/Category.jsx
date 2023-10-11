@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import "./Category.css";
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import dragon from '../../assets/images/homepage-dragon.jpg';
+import './Category.css';
 /**
  * Renders a list of items based on the selected category.
  * @param {Object} props - The component props.
@@ -11,25 +12,25 @@ const Category = ({ selectedCategory }) => {
   const [categoryItems, setCategoryItems] = useState([]);
 
   // Set the category title based on the selected category
-  let categoryTitle = "";
+  let categoryTitle = '';
   switch (selectedCategory) {
-    case "Melee":
-      categoryTitle = "Melee";
+    case 'Melee':
+      categoryTitle = 'Melee';
       break;
-    case "Magic":
-      categoryTitle = "Magic";
+    case 'Magic':
+      categoryTitle = 'Magic';
       break;
-    case "Ranged":
-      categoryTitle = "Ranged";
+    case 'Ranged':
+      categoryTitle = 'Ranged';
       break;
-    case "Armor":
-      categoryTitle = "Armor";
+    case 'Armor':
+      categoryTitle = 'Armor';
       break;
-    case "Consumable":
-      categoryTitle = "Consumables";
+    case 'Consumable':
+      categoryTitle = 'Consumables';
       break;
     default:
-      categoryTitle = "Consumables";
+      categoryTitle = 'Consumables';
       break;
   }
   // Fetch items based on the selected category
@@ -41,10 +42,10 @@ const Category = ({ selectedCategory }) => {
           const data = await response.json();
           setCategoryItems(data);
         } else {
-          console.error("Failed to fetch category items");
+          console.error('Failed to fetch category items');
         }
       } catch (error) {
-        console.error("Error fetching category items:", error);
+        console.error('Error fetching category items:', error);
       }
     };
 
@@ -52,9 +53,15 @@ const Category = ({ selectedCategory }) => {
   }, [selectedCategory]);
 
   return (
-    <div className="category-container">
+    <div className='category-container'>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <img
+          src={dragon}
+          style={{ borderRadius: '12px', boxShadow: '0 0 8px' }}
+        />
+      </div>
       <h2>{categoryTitle}</h2>
-      <div className="item-list">
+      <div className='item-list'>
         {categoryItems.map((item) => (
           <Link to={`/item/${item.id}`} key={item.id}>
             <ItemCard
