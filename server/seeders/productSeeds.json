@@ -88,6 +88,12 @@
         "price": 1,
         "quanity": 1000,
         "category": "Consumables"
+    },
+    {
+        "name": "Light Armor",
+        "price": 99,
+        "quanity": 10,
+        "category": "Armor"
     }
 
 
