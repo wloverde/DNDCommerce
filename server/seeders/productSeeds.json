@@ -70,6 +70,12 @@
         "price": 1399,
         "quanity": 5,
         "category": "Consumables"
+    },
+    {
+        "name": "Health Potion",
+        "price": 50,
+        "quanity": 100,
+        "category": "Consumables"
     }
 
 ]
