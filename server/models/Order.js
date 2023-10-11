@@ -3,10 +3,7 @@ const { Schema, model } = require('mongoose');
 // Schema for Order model
 const orderSchema = new Schema(
     {
-        total: {
-            type: Number,
-            required: true 
-        }, 
+         
         products: [
             {
                 type: Schema.Types.ObjectId,

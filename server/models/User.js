@@ -1,4 +1,4 @@
-const { Schema } = require('mongoose');
+const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 const Order = require('./Order');
 
@@ -44,6 +44,6 @@ userSchema.methods.isCorrectPassword = async function (password) {
 };
 
 
-const User = model('User', userSchema);
+const User = model('user', userSchema);
 
 module.exports = User;
