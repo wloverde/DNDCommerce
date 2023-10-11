@@ -94,6 +94,12 @@
         "price": 99,
         "quanity": 10,
         "category": "Armor"
+    },
+    {
+        "name": "Medium Armor",
+        "price": 105,
+        "quanity": 10,
+        "category": "Armor"
     }
 
 
