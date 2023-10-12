@@ -4,6 +4,7 @@ import Navbar from './components/Navbar/Navbar';
 import Category from './components/Category/Category';
 import ItemPage from './pages/ItemPage'; // Import your item description page component
 import Login from './pages/Login';
+import './App.css';
 
 function App() {
   const [selectedCategory, setSelectedCategory] = useState('');
