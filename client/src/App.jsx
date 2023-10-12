@@ -10,7 +10,7 @@ function App() {
   const [selectedCategory, setSelectedCategory] = useState('');
   // Define a callback function to set the selected category
   return (
-    <div className='container-responsive'>
+    <div>
       <Router>
         {/* Pass the callback function as a prop */}
         <Navbar setSelectedCategory={setSelectedCategory} />
