@@ -60,7 +60,7 @@ const Category = ({ selectedCategory }) => {
           style={{ borderRadius: '12px', boxShadow: '0 0 8px' }}
         />
       </div>
-      <h2>{categoryTitle}</h2>
+      <h2 className=''>{categoryTitle}</h2>
       <div className='item-list'>
         {categoryItems.map((item) => (
           <Link to={`/item/${item.id}`} key={item.id}>
