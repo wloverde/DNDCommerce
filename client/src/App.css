@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-.container-responsive {
-    display: flex;
+.line-break {
+    width: 100%;
+    height: 1px;
 }

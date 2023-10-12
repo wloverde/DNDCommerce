@@ -14,6 +14,7 @@ function App() {
       <Router>
         {/* Pass the callback function as a prop */}
         <Navbar setSelectedCategory={setSelectedCategory} />
+        {/* <div className='line-break'></div> */}
         {/* image test, can be resized, replaced, etc. */}
         <Routes>
           {/* Defined our routes */}
