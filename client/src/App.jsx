@@ -4,12 +4,13 @@ import Navbar from './components/Navbar/Navbar';
 import Category from './components/Category/Category';
 import ItemPage from './pages/ItemPage'; // Import your item description page component
 import Login from './pages/Login';
+import './App.css';
 
 function App() {
   const [selectedCategory, setSelectedCategory] = useState('');
   // Define a callback function to set the selected category
   return (
-    <div className='container-responsive'>
+    <div>
       <Router>
         {/* Pass the callback function as a prop */}
         <Navbar setSelectedCategory={setSelectedCategory} />

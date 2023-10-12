@@ -30,15 +30,15 @@ const Navbar = ({ setSelectedCategory }) => {
       <div className='image-wrapper'>
         <span>Twisted</span>
         <Link to={'/'}>
-          <img src={twistedTrout} />
+          <img className='mask mask-circle bg-white ' src={twistedTrout} />
         </Link>
         <span>Trout</span>
       </div>
-      <div className='user-icons-wrapper'>
-        <img src={wishlist} />
-        <img src={shoppingBag} onClick={() => window.location('/checkout')} />
+      <div className='menu menu-horizontal'>
+        <img className='h-8 w-8' src={wishlist} />
+        <img className='h-8 w-8' src={shoppingBag} onClick={() => window.location('/checkout')} />
         <Link to={'/profile'}>
-          <img src={account} />
+          <img className='h-8 w-8' src={account} />
         </Link>
       </div>
       <div className='line-break' />
@@ -52,14 +52,16 @@ const Navbar = ({ setSelectedCategory }) => {
           <li onClick={categoryClick}>Consumables</li>
         </ul>
       </div>
-      <div className='slogan-text'>
-        <p>
-          ✨Trout has the sale if you have the scales. We always roll nat
-          20&#39;s so delivery is instant using Teleportation!✨
-        </p>
-      </div>
+        <div className="text-center">
+          <p className="text-3xl font-bold">
+            ✨Trout has the sale if you have the scales. We always roll nat
+            20&#39;s so delivery is instant using Teleportation!✨
+          </p>
+        </div>
     </nav>
   );
 };
 
 export default Navbar;
+
+
