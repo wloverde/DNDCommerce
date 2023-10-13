@@ -15,7 +15,7 @@ const Login = () => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    
+
     setFormState({
       ...formState,
       [name]: value,
@@ -56,7 +56,7 @@ const Login = () => {
               </label>
               <input
                 type='email'
-                placeholder='email'
+                placeholder='Email'
                 name='email'
                 className='input input-bordered'
                 required
@@ -70,7 +70,7 @@ const Login = () => {
               </label>
               <input
                 type='password'
-                placeholder='password'
+                placeholder='Password'
                 className='input input-bordered'
                 name='password'
                 required

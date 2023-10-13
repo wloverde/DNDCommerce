@@ -6,9 +6,11 @@ import search from '../../assets/images/magnifying-glass.svg';
 import favorites from '../../assets/images/heart.png';
 import shoppingBag from '../../assets/images/shopping-bag.png';
 import account from '../../assets/images/account.png';
+import logout from '../../assets/images/logout.png';
 import SearchForm from '../SearchForm/SearchForm';
+import Auth from '../../../utils/auth';
 
-const Navbar = ({ setSelectedCategory }) => {
+const Navbar = ({ setSelectedCategory, isLoggedIn, currentUser }) => {
   const [displaySearch, setDisplaySearch] = useState(false);
 
   const categoryClick = (event) => {
@@ -26,6 +28,7 @@ const Navbar = ({ setSelectedCategory }) => {
           }
         />
         {displaySearch ? <SearchForm /> : <></>}
+        {isLoggedIn ? <p style={{paddingLeft: '5px'}}>Welcome, {currentUser.username}</p> : <></>}
       </div>
       <div className='image-wrapper'>
         <span>Twisted</span>
@@ -34,16 +37,42 @@ const Navbar = ({ setSelectedCategory }) => {
         </Link>
         <span>Trout</span>
       </div>
-      <div className='menu menu-horizontal'>
+      <div className='menu menu-horizontal icons-wrapper'>
         <Link to={'/favorites'}>
-          <img className='h-8 w-8 icons' src={favorites} />
+          <img
+            className='h-8 w-8 icons transititext-primary text-primary transition duration-150 ease-in-out hover:text-primary-600 focus:text-primary-600 active:text-primary-700 dark:text-primary-400 dark:hover:text-primary-500 dark:focus:text-primary-500 dark:active:text-primary-600'
+            data-te-toggle='tooltip'
+            title='Favorites'
+            src={favorites}
+          />
         </Link>
         <Link to={'/checkout'}>
-          <img className='h-8 w-8 icons' src={shoppingBag} />
+          <img
+            className='h-8 w-8 icons transititext-primary text-primary transition duration-150 ease-in-out hover:text-primary-600 focus:text-primary-600 active:text-primary-700 dark:text-primary-400 dark:hover:text-primary-500 dark:focus:text-primary-500 dark:active:text-primary-600'
+            data-te-toggle='tooltip'
+            title='Cart'
+            src={shoppingBag}
+          />
         </Link>
-        <Link to={'/login'}>
-          <img className='h-8 w-8 icons' src={account} />
+        <Link to={'/profile'}>
+          <img
+            className='h-8 w-8 icons transititext-primary text-primary transition duration-150 ease-in-out hover:text-primary-600 focus:text-primary-600 active:text-primary-700 dark:text-primary-400 dark:hover:text-primary-500 dark:focus:text-primary-500 dark:active:text-primary-600'
+            data-te-toggle='tooltip'
+            title='Profile'
+            src={account}
+          />
         </Link>
+        {isLoggedIn ? (
+          <img
+            className='h-8 w-8 icons transititext-primary text-primary transition duration-150 ease-in-out hover:text-primary-600 focus:text-primary-600 active:text-primary-700 dark:text-primary-400 dark:hover:text-primary-500 dark:focus:text-primary-500 dark:active:text-primary-600'
+            data-te-toggle='tooltip'
+            title='Logout'
+            src={logout}
+            onClick={Auth.logout}
+          />
+        ) : (
+          <></>
+        )}
       </div>
       <div className='line-break' />
       <div className='category-list'>
@@ -56,7 +85,7 @@ const Navbar = ({ setSelectedCategory }) => {
           <li onClick={categoryClick}>Consumables</li>
         </ul>
       </div>
-      <div className='text-center'>
+      <div className='text-center slogan-text'>
         <p className='text-3xl font-bold'>
           ✨Trout has the sale if you have the scales. We always roll nat
           20&#39;s so delivery is instant using Teleportation!✨
