@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
+import { LOGIN } from '../../utils/mutations';
+import Auth from '../../utils/auth';
 import './Login.css';
 
 const Login = () => {
@@ -8,6 +11,33 @@ const Login = () => {
     email: '',
     password: '',
   });
+  const [login, { error, data }] = useMutation(LOGIN);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const { data } = await login({
+        variables: { email: formState.email, password: formState.password },
+      });
+      Auth.login(data.login.token);
+    } catch (error) {
+      console.error(error);
+    }
+    setFormState({
+      email: '',
+      password: '',
+    });
+  };
+
   return (
     <div className='hero min-h-screen bg-base-200'>
       <div className='hero-content flex-col lg:flex-row-reverse'>
@@ -19,13 +49,7 @@ const Login = () => {
           </p>
         </div>
         <div className='card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100'>
-          <form
-            className='card-body'
-            onSubmit={(e) => {
-              e.preventDefault();
-              console.log(formState);
-            }}
-          >
+          <form className='card-body' onSubmit={handleFormSubmit}>
             <div className='form-control'>
               <label className='label'>
                 <span className='label-text'>Email</span>
@@ -33,12 +57,11 @@ const Login = () => {
               <input
                 type='email'
                 placeholder='email'
+                name='email'
                 className='input input-bordered'
                 required
                 value={formState.email}
-                onChange={(e) => {
-                  setFormState({ ...formState, email: e.target.value });
-                }}
+                onChange={handleChange}
               />
             </div>
             <div className='form-control'>
@@ -49,11 +72,10 @@ const Login = () => {
                 type='password'
                 placeholder='password'
                 className='input input-bordered'
+                name='password'
                 required
                 value={formState.password}
-                onChange={(e) => {
-                  setFormState({ ...formState, password: e.target.value });
-                }}
+                onChange={handleChange}
               />
               <label className='label'>
                 <a href='#' className='label-text-alt link link-hover'>
@@ -72,6 +94,11 @@ const Login = () => {
               </Link>
             </div>
           </form>
+          {error && (
+            <div className='form-control mt-6'>
+              <p className='py-6'>{error.message}</p>
+            </div>
+          )}
         </div>
       </div>
     </div>

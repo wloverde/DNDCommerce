@@ -41,7 +41,7 @@ const Navbar = ({ setSelectedCategory }) => {
         <Link to={'/checkout'}>
           <img className='h-8 w-8 icons' src={shoppingBag} />
         </Link>
-        <Link to={'/profile'}>
+        <Link to={'/login'}>
           <img className='h-8 w-8 icons' src={account} />
         </Link>
       </div>
