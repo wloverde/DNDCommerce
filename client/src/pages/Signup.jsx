@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import { useMutation } from '@apollo/client';
+import { ADD_USER } from '../../utils/mutations';
+import Auth from '../../utils/auth';
 
 const Signup = () => {
   const [formState, setFormState] = useState({
@@ -6,6 +9,35 @@ const Signup = () => {
     username: '',
     password: '',
   });
+
+  const [addUser, { error, data }] = useMutation(ADD_USER);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const { data } = await addUser({
+        variables: {
+          email: formState.email,
+          username: formState.username,
+          password: formState.password,
+        },
+      });
+
+      Auth.login(data.addUser.token);
+    } catch (error) {
+      console.error({ error });
+    }
+  };
   return (
     <div className='hero min-h-screen bg-base-200'>
       <div className='hero-content flex-col lg:flex-row-reverse'>
@@ -16,13 +48,7 @@ const Signup = () => {
           </p>
         </div>
         <div className='card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100'>
-          <form
-            className='card-body'
-            onSubmit={(e) => {
-              e.preventDefault();
-              console.log(formState);
-            }}
-          >
+          <form className='card-body' onSubmit={handleFormSubmit}>
             <div className='form-control'>
               <label className='label'>
                 <span className='label-text'>Username</span>
@@ -32,10 +58,9 @@ const Signup = () => {
                 placeholder='Username'
                 className='input input-bordered'
                 required
+                name='username'
                 value={formState.username}
-                onChange={(e) => {
-                  setFormState({ ...formState, username: e.target.value });
-                }}
+                onChange={handleChange}
               />
             </div>
             <div className='form-control'>
@@ -47,10 +72,9 @@ const Signup = () => {
                 placeholder='Email'
                 className='input input-bordered'
                 required
+                name='email'
                 value={formState.email}
-                onChange={(e) => {
-                  setFormState({ ...formState, email: e.target.value });
-                }}
+                onChange={handleChange}
               />
             </div>
             <div className='form-control'>
@@ -62,10 +86,9 @@ const Signup = () => {
                 placeholder='Password'
                 className='input input-bordered'
                 required
+                name='password'
                 value={formState.password}
-                onChange={(e) => {
-                  setFormState({ ...formState, password: e.target.value });
-                }}
+                onChange={handleChange}
               />
             </div>
             <div className='form-control mt-6'>
