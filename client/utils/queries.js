@@ -47,8 +47,7 @@ export const QUERY_CATEGORIES = gql`
 
 export const QUERY_USER = gql`
   {
-    user {
-      username
+    user { 
       email
       orders {
         _id 

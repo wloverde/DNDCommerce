@@ -1,13 +1,29 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { useMutation } from '@apollo/client';
 import { Link } from 'react-router-dom';
+import { LOGIN } from '../../utils/mutations';
+import Auth from '../../utils/auth';
+
 import './Login.css';
 
-const Login = () => {
-  // funcitoning login page using react Link
-  const [formState, setFormState] = useState({
-    email: '',
-    password: '',
-  });
+function Login() {
+  const [formState, setFormState] = useState({ email: '', password: '' });
+  const [login, { error }] = useMutation(LOGIN);
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const mutationResponse = await login({
+        variables: { email: formState.email, password: formState.password },
+      });
+      const token = mutationResponse.data.login.token;
+      Auth.login(token);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+ 
+
   return (
     <div className='hero min-h-screen bg-base-200'>
       <div className='hero-content flex-col lg:flex-row-reverse'>
@@ -21,10 +37,7 @@ const Login = () => {
         <div className='card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100'>
           <form
             className='card-body'
-            onSubmit={(e) => {
-              e.preventDefault();
-              console.log(formState);
-            }}
+            onSubmit={handleFormSubmit}
           >
             <div className='form-control'>
               <label className='label'>

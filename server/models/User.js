@@ -4,13 +4,7 @@ const Order = require('./Order');
 
 // Schema for User Model
 const userSchema = new Schema(
-    {
-        username: {
-            type: String,
-            required: true,
-            unique: true,
-            trim: true,
-        },
+    { 
         email: {
             type: String,
             required: true,
