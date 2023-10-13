@@ -1,21 +1,18 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import './Login.css';
 
-const Login = () => {
-  // funcitoning login page using react Link
+const Signup = () => {
   const [formState, setFormState] = useState({
     email: '',
+    username: '',
     password: '',
   });
   return (
     <div className='hero min-h-screen bg-base-200'>
       <div className='hero-content flex-col lg:flex-row-reverse'>
         <div className='text-center lg:text-left'>
-          <h1 className='text-5xl font-bold'>Login now!</h1>
+          <h1 className='text-5xl font-bold'>Register now!</h1>
           <p className='py-6'>
-            Login to gain access to your account information and all your
-            favorites.
+            Signup now to start ordering all of your favorite DnD items.
           </p>
         </div>
         <div className='card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100'>
@@ -28,11 +25,26 @@ const Login = () => {
           >
             <div className='form-control'>
               <label className='label'>
+                <span className='label-text'>Username</span>
+              </label>
+              <input
+                type='text'
+                placeholder='Username'
+                className='input input-bordered'
+                required
+                value={formState.username}
+                onChange={(e) => {
+                  setFormState({ ...formState, username: e.target.value });
+                }}
+              />
+            </div>
+            <div className='form-control'>
+              <label className='label'>
                 <span className='label-text'>Email</span>
               </label>
               <input
                 type='email'
-                placeholder='email'
+                placeholder='Email'
                 className='input input-bordered'
                 required
                 value={formState.email}
@@ -47,7 +59,7 @@ const Login = () => {
               </label>
               <input
                 type='password'
-                placeholder='password'
+                placeholder='Password'
                 className='input input-bordered'
                 required
                 value={formState.password}
@@ -55,21 +67,11 @@ const Login = () => {
                   setFormState({ ...formState, password: e.target.value });
                 }}
               />
-              <label className='label'>
-                <a href='#' className='label-text-alt link link-hover'>
-                  Forgot password?
-                </a>
-              </label>
             </div>
             <div className='form-control mt-6'>
               <button type='submit' className='btn btn-primary'>
-                Login
+                Register
               </button>
-              <Link to={'/signup'} className='form-control mt-6'>
-                <button type='button' className='btn btn-primary'>
-                  or Signup!
-                </button>
-              </Link>
             </div>
           </form>
         </div>
@@ -78,4 +80,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;

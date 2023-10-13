@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import twistedTrout from '../../assets/images/twisted-trout.svg';
 import search from '../../assets/images/magnifying-glass.svg';
-import wishlist from '../../assets/images/heart.png';
+import favorites from '../../assets/images/heart.png';
 import shoppingBag from '../../assets/images/shopping-bag.png';
 import account from '../../assets/images/account.png';
 import SearchForm from '../SearchForm/SearchForm';
@@ -35,10 +35,14 @@ const Navbar = ({ setSelectedCategory }) => {
         <span>Trout</span>
       </div>
       <div className='menu menu-horizontal'>
-        <img className='h-8 w-8' src={wishlist} />
-        <img className='h-8 w-8' src={shoppingBag} onClick={() => window.location('/checkout')} />
+        <Link to={'/favorites'}>
+          <img className='h-8 w-8 icons' src={favorites} />
+        </Link>
+        <Link to={'/checkout'}>
+          <img className='h-8 w-8 icons' src={shoppingBag} />
+        </Link>
         <Link to={'/profile'}>
-          <img className='h-8 w-8' src={account} />
+          <img className='h-8 w-8 icons' src={account} />
         </Link>
       </div>
       <div className='line-break' />
@@ -52,16 +56,14 @@ const Navbar = ({ setSelectedCategory }) => {
           <li onClick={categoryClick}>Consumables</li>
         </ul>
       </div>
-        <div className="text-center">
-          <p className="text-3xl font-bold">
-            ✨Trout has the sale if you have the scales. We always roll nat
-            20&#39;s so delivery is instant using Teleportation!✨
-          </p>
-        </div>
+      <div className='text-center'>
+        <p className='text-3xl font-bold'>
+          ✨Trout has the sale if you have the scales. We always roll nat
+          20&#39;s so delivery is instant using Teleportation!✨
+        </p>
+      </div>
     </nav>
   );
 };
 
 export default Navbar;
-
-
