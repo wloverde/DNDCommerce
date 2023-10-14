@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
+import { QUERY_PRODUCTS } from '../../../utils/queries';
 import dragon from '../../assets/images/homepage-dragon.jpg';
+import ItemCard from '../ItemCard/ItemCard';
 import './Category.css';
 /**
  * Renders a list of items based on the selected category.
@@ -9,7 +12,7 @@ import './Category.css';
  */
 const Category = ({ selectedCategory }) => {
   // State to hold the items for the selected category
-  const [categoryItems, setCategoryItems] = useState([]);
+  // const [categoryItems, setCategoryItems] = useState([]);
 
   // Set the category title based on the selected category
   let categoryTitle = '';
@@ -33,9 +36,20 @@ const Category = ({ selectedCategory }) => {
       categoryTitle = 'Consumables';
       break;
   }
-  // Fetch items based on the selected category
+  // query products based on the selected category
+  const {
+    loading: loadingProducts,
+    error: errorProducts,
+    data: dataProducts,
+  } = useQuery(QUERY_PRODUCTS, {
+    variables: { category: selectedCategory },
+  });
 
-  
+  console.log(dataProducts);
+
+  if (loadingProducts) {
+    return <span className='loading loading-dots loading-lg'></span>;
+  }
 
   return (
     <div className='category-container'>
@@ -45,16 +59,18 @@ const Category = ({ selectedCategory }) => {
           style={{ borderRadius: '12px', boxShadow: '0 0 8px' }}
         />
       </div>
-      <h2 className=''>{categoryTitle}</h2>
+      <h2 style={{ margin: '25px 0', fontSize: '2rem', fontWeight: 'bold' }}>
+        {categoryTitle}
+      </h2>
       <div className='item-list'>
-        {categoryItems.map((item) => (
-          <Link to={`/item/${item.id}`} key={item.id}>
+        {dataProducts.products.map((item) => (
+          <Link to={`/item/${item._id}`} key={item.id}>
             <ItemCard
               itemName={item.name}
               itemImage={item.image}
-              itemTags={item.tags}
               itemPrice={item.price}
-              itemStock={item.stock}
+              itemStock={item.quantity}
+              itemDescription={item.description}
             />
           </Link>
         ))}

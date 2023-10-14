@@ -13,30 +13,16 @@ import logout from '../../assets/images/logout.png';
 import SearchForm from '../SearchForm/SearchForm';
 import Auth from '../../../utils/auth';
 
-const Navbar = ({
-  setSelectedCategory,
-  isLoggedIn,
-  currentUser,
-  selectedCategory,
-}) => {
+const Navbar = ({ setSelectedCategory, isLoggedIn, currentUser }) => {
   const [displaySearch, setDisplaySearch] = useState(false);
 
-  // const {
-  //   loading: loadingProducts,
-  //   error: errorProducts,
-  //   data: dataProducts,
-  // } = useQuery(QUERY_PRODUCTS, {
-  //   variables: { category: selectedCategory },
-  // });
-
-  // console.log(dataProducts);
+  
 
   const {
     loading: loadingCategories,
     error: errorCategories,
     data: dataCategories,
   } = useQuery(QUERY_CATEGORIES);
-  console.log(dataCategories);
 
   const categoryClick = (category) => {
     const categoryId = category._id;
@@ -71,38 +57,19 @@ const Navbar = ({
         <span>Trout</span>
       </div>
       <div className='menu menu-horizontal icons-wrapper'>
-        <Link to={'/favorites'}>
-          <img
-            className='h-8 w-8 icons transititext-primary text-primary transition duration-150 ease-in-out hover:text-primary-600 focus:text-primary-600 active:text-primary-700 dark:text-primary-400 dark:hover:text-primary-500 dark:focus:text-primary-500 dark:active:text-primary-600'
-            data-te-toggle='tooltip'
-            title='Favorites'
-            src={favorites}
-          />
+        <Link to={'/favorites'} className='tooltip' data-tip='Favorites'>
+          <img className='h-8 w-8 icons' src={favorites} />
         </Link>
-        <Link to={'/checkout'}>
-          <img
-            className='h-8 w-8 icons transititext-primary text-primary transition duration-150 ease-in-out hover:text-primary-600 focus:text-primary-600 active:text-primary-700 dark:text-primary-400 dark:hover:text-primary-500 dark:focus:text-primary-500 dark:active:text-primary-600'
-            data-te-toggle='tooltip'
-            title='Cart'
-            src={shoppingBag}
-          />
+        <Link to={'/checkout'} className='tooltip' data-tip='Cart'>
+          <img className='h-8 w-8 icons' src={shoppingBag} />
         </Link>
-        <Link to={'/profile'}>
-          <img
-            className='h-8 w-8 icons transititext-primary text-primary transition duration-150 ease-in-out hover:text-primary-600 focus:text-primary-600 active:text-primary-700 dark:text-primary-400 dark:hover:text-primary-500 dark:focus:text-primary-500 dark:active:text-primary-600'
-            data-te-toggle='tooltip'
-            title='Profile'
-            src={account}
-          />
+        <Link to={'/profile'} className='tooltip' data-tip='Profile'>
+          <img className='h-8 w-8 icons' src={account} />
         </Link>
         {isLoggedIn ? (
-          <img
-            className='h-8 w-8 icons transititext-primary text-primary transition duration-150 ease-in-out hover:text-primary-600 focus:text-primary-600 active:text-primary-700 dark:text-primary-400 dark:hover:text-primary-500 dark:focus:text-primary-500 dark:active:text-primary-600'
-            data-te-toggle='tooltip'
-            title='Logout'
-            src={logout}
-            onClick={Auth.logout}
-          />
+          <div className='tooltip' data-tip='Logout'>
+            <img className='h-8 w-8 icons' src={logout} onClick={Auth.logout} />
+          </div>
         ) : (
           <></>
         )}

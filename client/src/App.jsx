@@ -41,6 +41,7 @@ const client = new ApolloClient({
 });
 
 function App() {
+  //sets the initial state to be the consumables ObjectId
   const [selectedCategory, setSelectedCategory] = useState(
     '6528a02159e8e489b3cf815d'
   );
@@ -49,6 +50,8 @@ function App() {
     username: '',
     email: '',
   });
+
+  // on page load checks if the user is logged in by looking for a jwt
   useEffect(() => {
     if (localStorage.getItem('id_token')) {
       setIsLoggedIn(true);
