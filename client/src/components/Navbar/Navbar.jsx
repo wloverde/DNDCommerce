@@ -1,5 +1,8 @@
 import './Navbar.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useQuery } from '@apollo/client';
+import { QUERY_PRODUCTS } from '../../../utils/queries';
+import { QUERY_CATEGORIES } from '../../../utils/queries';
 import { Link } from 'react-router-dom';
 import twistedTrout from '../../assets/images/twisted-trout.svg';
 import search from '../../assets/images/magnifying-glass.svg';
@@ -10,16 +13,42 @@ import logout from '../../assets/images/logout.png';
 import SearchForm from '../SearchForm/SearchForm';
 import Auth from '../../../utils/auth';
 
-const Navbar = ({ setSelectedCategory, isLoggedIn, currentUser }) => {
+const Navbar = ({
+  setSelectedCategory,
+  isLoggedIn,
+  currentUser,
+  selectedCategory,
+}) => {
   const [displaySearch, setDisplaySearch] = useState(false);
 
-  const categoryClick = (event) => {
-    const category = event.target.innerHTML;
-    setSelectedCategory(category); // Call the callback function
+  // const {
+  //   loading: loadingProducts,
+  //   error: errorProducts,
+  //   data: dataProducts,
+  // } = useQuery(QUERY_PRODUCTS, {
+  //   variables: { category: selectedCategory },
+  // });
+
+  // console.log(dataProducts);
+
+  const {
+    loading: loadingCategories,
+    error: errorCategories,
+    data: dataCategories,
+  } = useQuery(QUERY_CATEGORIES);
+  console.log(dataCategories);
+
+  const categoryClick = (category) => {
+    const categoryId = category._id;
+    setSelectedCategory(categoryId); // Call the callback function
   };
 
+  if (loadingCategories) {
+    return <span className='loading loading-dots loading-lg'></span>;
+  }
+
   return (
-    <nav className='content-flex'>
+    <nav className='content-flex header'>
       <div className='search-wrapper'>
         <img
           src={search}
@@ -28,7 +57,11 @@ const Navbar = ({ setSelectedCategory, isLoggedIn, currentUser }) => {
           }
         />
         {displaySearch ? <SearchForm /> : <></>}
-        {isLoggedIn ? <p style={{paddingLeft: '5px'}}>Welcome, {currentUser.username}</p> : <></>}
+        {isLoggedIn ? (
+          <p style={{ paddingLeft: '5px' }}>Welcome, {currentUser.username}</p>
+        ) : (
+          <></>
+        )}
       </div>
       <div className='image-wrapper'>
         <span>Twisted</span>
@@ -77,12 +110,12 @@ const Navbar = ({ setSelectedCategory, isLoggedIn, currentUser }) => {
       <div className='line-break' />
       <div className='category-list'>
         <ul className='categories'>
-          {/* render the cagetories with a fetch request */}
-          <li onClick={categoryClick}>Melee</li>
-          <li onClick={categoryClick}>Magic</li>
-          <li onClick={categoryClick}>Ranged</li>
-          <li onClick={categoryClick}>Armor</li>
-          <li onClick={categoryClick}>Consumables</li>
+          {/* render the cagetories with a query */}
+          {dataCategories.categories.map((category) => (
+            <li key={category._id} onClick={() => categoryClick(category)}>
+              {category.name}
+            </li>
+          ))}
         </ul>
       </div>
       <div className='text-center slogan-text'>

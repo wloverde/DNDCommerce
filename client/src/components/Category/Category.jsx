@@ -14,19 +14,19 @@ const Category = ({ selectedCategory }) => {
   // Set the category title based on the selected category
   let categoryTitle = '';
   switch (selectedCategory) {
-    case 'Melee':
+    case '6528a02159e8e489b3cf8159':
       categoryTitle = 'Melee';
       break;
-    case 'Magic':
+    case '6528a02159e8e489b3cf815b':
       categoryTitle = 'Magic';
       break;
-    case 'Ranged':
+    case '6528a02159e8e489b3cf815a':
       categoryTitle = 'Ranged';
       break;
-    case 'Armor':
+    case '6528a02159e8e489b3cf815c':
       categoryTitle = 'Armor';
       break;
-    case 'Consumable':
+    case '6528a02159e8e489b3cf815d':
       categoryTitle = 'Consumables';
       break;
     default:
@@ -34,23 +34,8 @@ const Category = ({ selectedCategory }) => {
       break;
   }
   // Fetch items based on the selected category
-  useEffect(() => {
-    const fetchCategoryItems = async () => {
-      try {
-        const response = await fetch(`/api/items?category=${selectedCategory}`);
-        if (response.ok) {
-          const data = await response.json();
-          setCategoryItems(data);
-        } else {
-          console.error('Failed to fetch category items');
-        }
-      } catch (error) {
-        console.error('Error fetching category items:', error);
-      }
-    };
 
-    fetchCategoryItems();
-  }, [selectedCategory]);
+  
 
   return (
     <div className='category-container'>
