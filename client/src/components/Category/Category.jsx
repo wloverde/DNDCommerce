@@ -45,8 +45,6 @@ const Category = ({ selectedCategory }) => {
     variables: { category: selectedCategory },
   });
 
-  console.log(dataProducts);
-
   if (loadingProducts) {
     return <span className='loading loading-dots loading-lg'></span>;
   }
@@ -64,8 +62,9 @@ const Category = ({ selectedCategory }) => {
       </h2>
       <div className='item-list'>
         {dataProducts.products.map((item) => (
-          <Link to={`/item/${item._id}`} key={item.id}>
+          <Link to={`/item/${item._id}`} key={item._id}>
             <ItemCard
+              key={item._id}
               itemName={item.name}
               itemImage={item.image}
               itemPrice={item.price}

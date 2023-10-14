@@ -1,7 +1,6 @@
 import './Navbar.css';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useQuery } from '@apollo/client';
-import { QUERY_PRODUCTS } from '../../../utils/queries';
 import { QUERY_CATEGORIES } from '../../../utils/queries';
 import { Link } from 'react-router-dom';
 import twistedTrout from '../../assets/images/twisted-trout.svg';
@@ -15,8 +14,6 @@ import Auth from '../../../utils/auth';
 
 const Navbar = ({ setSelectedCategory, isLoggedIn, currentUser }) => {
   const [displaySearch, setDisplaySearch] = useState(false);
-
-  
 
   const {
     loading: loadingCategories,
@@ -35,6 +32,7 @@ const Navbar = ({ setSelectedCategory, isLoggedIn, currentUser }) => {
 
   return (
     <nav className='content-flex header'>
+      {/* wraps the search icon, then when clicked renders the search bar conditionally */}
       <div className='search-wrapper'>
         <img
           src={search}
@@ -49,6 +47,7 @@ const Navbar = ({ setSelectedCategory, isLoggedIn, currentUser }) => {
           <></>
         )}
       </div>
+      {/* container for the icons on the navbar, they all link to their respective routes in the app jsx component */}
       <div className='image-wrapper'>
         <span>Twisted</span>
         <Link to={'/'}>
@@ -66,6 +65,7 @@ const Navbar = ({ setSelectedCategory, isLoggedIn, currentUser }) => {
         <Link to={'/profile'} className='tooltip' data-tip='Profile'>
           <img className='h-8 w-8 icons' src={account} />
         </Link>
+        {/* conditionally renders the logout button based on the state passed in from the app jsx component */}
         {isLoggedIn ? (
           <div className='tooltip' data-tip='Logout'>
             <img className='h-8 w-8 icons' src={logout} onClick={Auth.logout} />
