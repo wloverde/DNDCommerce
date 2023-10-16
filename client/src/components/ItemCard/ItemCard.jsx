@@ -1,4 +1,5 @@
 import React from 'react';
+import { useShoppingCart } from 'use-shopping-cart';
 
 const ItemCard = ({
   itemName,
@@ -6,7 +7,24 @@ const ItemCard = ({
   itemPrice,
   itemStock,
   itemDescription,
+  itemId,
 }) => {
+  const shoppingCart = useShoppingCart();
+  const priceFormatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  });
+  const addToCartHandler = (itemName, itemPrice, itemDescription, itemId) => {
+    const price = priceFormatter.format(itemPrice);
+    shoppingCart.addItem({
+      name: itemName,
+      description: itemDescription,
+      id: itemId,
+      price: price,
+      currency: 'USD',
+    });
+  };
+
   return (
     <div className='card w-96 bg-base-200 shadow-xl image-full'>
       <figure>
@@ -21,7 +39,15 @@ const ItemCard = ({
         >
           <p>In Stock: {itemStock}</p>
           <p>${itemPrice}</p>
-          <button className='btn btn-primary'>Add to Cart</button>
+          <button
+            type='button'
+            className='btn btn-primary'
+            onClick={() => {
+              addToCartHandler(itemName, itemPrice, itemDescription, itemId)
+            }}
+          >
+            Add to Cart
+          </button>
         </div>
       </div>
     </div>
