@@ -1,5 +1,7 @@
 import './Navbar.css';
 import { useState } from 'react';
+import { useQuery } from '@apollo/client';
+import { QUERY_CATEGORIES } from '../../../utils/queries';
 import { Link } from 'react-router-dom';
 import twistedTrout from '../../assets/images/twisted-trout.svg';
 import search from '../../assets/images/magnifying-glass.svg';
@@ -13,13 +15,24 @@ import Auth from '../../../utils/auth';
 const Navbar = ({ setSelectedCategory, isLoggedIn, currentUser }) => {
   const [displaySearch, setDisplaySearch] = useState(false);
 
-  const categoryClick = (event) => {
-    const category = event.target.innerHTML;
-    setSelectedCategory(category); // Call the callback function
+  const {
+    loading: loadingCategories,
+    error: errorCategories,
+    data: dataCategories,
+  } = useQuery(QUERY_CATEGORIES);
+
+  const categoryClick = (category) => {
+    const categoryId = category._id;
+    setSelectedCategory(categoryId); // Call the callback function
   };
 
+  if (loadingCategories) {
+    return <span className='loading loading-dots loading-lg'></span>;
+  }
+
   return (
-    <nav className='content-flex'>
+    <nav className='content-flex header'>
+      {/* wraps the search icon, then when clicked renders the search bar conditionally */}
       <div className='search-wrapper'>
         <img
           src={search}
@@ -28,8 +41,13 @@ const Navbar = ({ setSelectedCategory, isLoggedIn, currentUser }) => {
           }
         />
         {displaySearch ? <SearchForm /> : <></>}
-        {isLoggedIn ? <p style={{paddingLeft: '5px'}}>Welcome, {currentUser.username}</p> : <></>}
+        {isLoggedIn ? (
+          <p style={{ paddingLeft: '5px' }}>Welcome, {currentUser.username}</p>
+        ) : (
+          <></>
+        )}
       </div>
+      {/* container for the icons on the navbar, they all link to their respective routes in the app jsx component */}
       <div className='image-wrapper'>
         <span>Twisted</span>
         <Link to={'/'}>
@@ -38,38 +56,20 @@ const Navbar = ({ setSelectedCategory, isLoggedIn, currentUser }) => {
         <span>Trout</span>
       </div>
       <div className='menu menu-horizontal icons-wrapper'>
-        <Link to={'/favorites'}>
-          <img
-            className='h-8 w-8 icons transititext-primary text-primary transition duration-150 ease-in-out hover:text-primary-600 focus:text-primary-600 active:text-primary-700 dark:text-primary-400 dark:hover:text-primary-500 dark:focus:text-primary-500 dark:active:text-primary-600'
-            data-te-toggle='tooltip'
-            title='Favorites'
-            src={favorites}
-          />
+        <Link to={'/favorites'} className='tooltip' data-tip='Favorites'>
+          <img className='h-8 w-8 icons' src={favorites} />
         </Link>
-        <Link to={'/checkout'}>
-          <img
-            className='h-8 w-8 icons transititext-primary text-primary transition duration-150 ease-in-out hover:text-primary-600 focus:text-primary-600 active:text-primary-700 dark:text-primary-400 dark:hover:text-primary-500 dark:focus:text-primary-500 dark:active:text-primary-600'
-            data-te-toggle='tooltip'
-            title='Cart'
-            src={shoppingBag}
-          />
+        <Link to={'/checkout'} className='tooltip' data-tip='Cart'>
+          <img className='h-8 w-8 icons' src={shoppingBag} />
         </Link>
-        <Link to={'/profile'}>
-          <img
-            className='h-8 w-8 icons transititext-primary text-primary transition duration-150 ease-in-out hover:text-primary-600 focus:text-primary-600 active:text-primary-700 dark:text-primary-400 dark:hover:text-primary-500 dark:focus:text-primary-500 dark:active:text-primary-600'
-            data-te-toggle='tooltip'
-            title='Profile'
-            src={account}
-          />
+        <Link to={'/profile'} className='tooltip' data-tip='Profile'>
+          <img className='h-8 w-8 icons' src={account} />
         </Link>
+        {/* conditionally renders the logout button based on the state passed in from the app jsx component */}
         {isLoggedIn ? (
-          <img
-            className='h-8 w-8 icons transititext-primary text-primary transition duration-150 ease-in-out hover:text-primary-600 focus:text-primary-600 active:text-primary-700 dark:text-primary-400 dark:hover:text-primary-500 dark:focus:text-primary-500 dark:active:text-primary-600'
-            data-te-toggle='tooltip'
-            title='Logout'
-            src={logout}
-            onClick={Auth.logout}
-          />
+          <div className='tooltip' data-tip='Logout'>
+            <img className='h-8 w-8 icons' src={logout} onClick={Auth.logout} />
+          </div>
         ) : (
           <></>
         )}
@@ -77,12 +77,12 @@ const Navbar = ({ setSelectedCategory, isLoggedIn, currentUser }) => {
       <div className='line-break' />
       <div className='category-list'>
         <ul className='categories'>
-          {/* render the cagetories with a fetch request */}
-          <li onClick={categoryClick}>Melee</li>
-          <li onClick={categoryClick}>Magic</li>
-          <li onClick={categoryClick}>Ranged</li>
-          <li onClick={categoryClick}>Armor</li>
-          <li onClick={categoryClick}>Consumables</li>
+          {/* render the cagetories with a query */}
+          {dataCategories.categories.map((category) => (
+            <li key={category._id} onClick={() => categoryClick(category)}>
+              {category.name}
+            </li>
+          ))}
         </ul>
       </div>
       <div className='text-center slogan-text'>

@@ -13,6 +13,8 @@ import ItemPage from './pages/ItemPage'; // Import your item description page co
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Auth from '../utils/auth';
+import Profile from './pages/Profile';
+import Footer from './components/Footer/Footer';
 import './App.css';
 
 const httpLink = createHttpLink({
@@ -39,12 +41,17 @@ const client = new ApolloClient({
 });
 
 function App() {
-  const [selectedCategory, setSelectedCategory] = useState('');
+  //sets the initial state to be the consumables ObjectId
+  const [selectedCategory, setSelectedCategory] = useState(
+    '6528a02159e8e489b3cf815d'
+  );
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({
     username: '',
     email: '',
   });
+
+  // on page load checks if the user is logged in by looking for a jwt
   useEffect(() => {
     if (localStorage.getItem('id_token')) {
       setIsLoggedIn(true);
@@ -65,6 +72,7 @@ function App() {
           setSelectedCategory={setSelectedCategory}
           isLoggedIn={isLoggedIn}
           currentUser={currentUser}
+          selectedCategory={selectedCategory}
         />
         {/* image test, can be resized, replaced, etc. */}
         <Routes>
@@ -75,10 +83,16 @@ function App() {
           />
           <Route path='/item/:itemId' element={<ItemPage />} />
           {/* Add more routes for other pages as needed */}
-          <Route path={`/profile`} element={isLoggedIn ? <></> : <Login />} />
+          <Route
+            path={`/profile`}
+            element={
+              isLoggedIn ? <Profile currentUser={currentUser} /> : <Login />
+            }
+          />
           {/* <Route path={`/checkout`} element={<Checkout />} /> */}
           <Route path={'/signup'} element={<Signup />}></Route>
         </Routes>
+        <Footer />
       </Router>
     </ApolloProvider>
   );

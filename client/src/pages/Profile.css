@@ -1,0 +1,14 @@
+.profile {
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    align-items: center;
+    padding: 1%;
+    margin-bottom: 10%;
+}
+
+.card-text {
+    font-size: 1.2rem;
+}
