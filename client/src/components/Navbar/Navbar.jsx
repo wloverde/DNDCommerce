@@ -3,6 +3,9 @@ import Auth from "../../../utils/auth";
 import { Link } from "react-router-dom";
 import twistedTrout from "../../assets/images/twisted-trout.svg";
 import "./Navbar.css";
+import account from "../../assets/images/account.png";
+import logout from "../../assets/images/logout.png";
+import orderHistory from "../../assets/images/orderHistory.png";
 
 function Nav() {
   function showNavigation() {
@@ -10,13 +13,24 @@ function Nav() {
       return (
         <ul className="flex-row">
           <li className="mx-1">
-            <Link to="/orderHistory">Order History</Link>
+            <Link to="/orderHistory"  className="tooltip" data-tip="orderHistory">
+              <img className="h-8 w-8 icons" src={orderHistory} />
+            </Link>
+          </li>
+          <li>
+            <Link to={"/profile"} className="tooltip" data-tip="Profile">
+              <img className="h-8 w-8 icons" src={account} />
+            </Link>
           </li>
           <li className="mx-1">
             {/* this is not using the Link component to logout or user and then refresh the application to the start */}
-            <a href="/" onClick={() => Auth.logout()}>
-              Logout
-            </a>
+            <div className="tooltip" data-tip="Logout">
+              <img
+                className="h-8 w-8 icons"
+                src={logout}
+                onClick={Auth.logout}
+              />
+            </div>
           </li>
         </ul>
       );
@@ -35,29 +49,25 @@ function Nav() {
   }
 
   return (
-    <div>
-      <header className="flex-row px-1">
-        <h1>
-          <Link to="/">Twisted Trout</Link>
-        </h1>
+    <header className="flex-row px-1">
+      <h1>
+        <Link to="/">Twisted Trout</Link>
+      </h1>
 
-        <div className="image-wrapper">
-          <Link to={"/"}>
-            <img className="mask mask-circle bg-white " src={twistedTrout} />
-          </Link>
-        </div>
-        <nav>{showNavigation()}</nav>
+      <div className="image-wrapper">
+        <Link to={"/"}>
+          <img className="mask mask-circle bg-white " src={twistedTrout} />
+        </Link>
+      </div>
+      <nav>{showNavigation()}</nav>
 
-        <div className="text-center slogan-text">
+      <div className="text-center slogan-text">
         <p className="text-3xl font-bold">
           ✨Trout has the sale if you have the scales. We always roll nat
           20&#39;s so delivery is instant using Teleportation!✨
         </p>
       </div>
-      </header>
-
-     
-    </div>
+    </header>
   );
 }
 
