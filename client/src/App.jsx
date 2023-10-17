@@ -49,7 +49,7 @@ const client = new ApolloClient({
 
 function App() {
   //sets the initial state to be the consumables ObjectId
-  const [selectedCategory, setSelectedCategory] = useState();
+  const [selectedCategory, setSelectedCategory] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({
     username: "",
