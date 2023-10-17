@@ -59,6 +59,7 @@ const resolvers = {
       const line_items = [];
 
       for (const product of args.products) {
+         
         line_items.push({
           price_data: {
             currency: 'usd',

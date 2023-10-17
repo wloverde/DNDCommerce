@@ -1,5 +1,4 @@
- 
-const { gql } = require("apollo-server-express");
+const { gql } = require('apollo-server-express');
 
 const typeDefs = gql` 
   type User {
@@ -39,6 +38,10 @@ const typeDefs = gql`
     session: ID
   }
 
+  type Auth {
+    token: ID
+    user: User
+  }
 
   input ProductInput {
     _id: ID
@@ -50,11 +53,11 @@ const typeDefs = gql`
   }
 
   type Query {
-    user: User 
-    products(category:ID, name:String): [Product]
-    product(_id:ID!): Product
-    order(_id:ID!): Order  
     categories: [Category]
+    products(category: ID, name: String): [Product]
+    product(_id: ID!): Product
+    user: User
+    order(_id: ID!): Order
     checkout(products: [ProductInput]): Checkout
   }
 
@@ -65,9 +68,6 @@ const typeDefs = gql`
     updateProduct(_id: ID!, quantity: Int!): Product
     login(email: String!, password: String!): Auth
   }
-
-
-
 `;
 
-module.exports = typeDefs; 
+module.exports = typeDefs;

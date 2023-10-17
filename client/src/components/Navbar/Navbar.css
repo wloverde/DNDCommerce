@@ -1,37 +1,13 @@
-.content-flex {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.header {
-    margin: 2% 5%;
-}
-
-.search-wrapper {
-    display: flex;
-    align-items: center;
-    min-width: 25%;
-}
-
-.search-wrapper img {
-    padding-right: 5%;
-}
-
-.search-wrapper img:hover {
-    cursor: pointer;
-}
+ul{
+    list-style-type: none;  
+} 
 
 .image-wrapper {
     display: flex;
     align-items: center;
     min-width: 33%;
 }
-
-.image-wrapper span {
-    font-size: 2rem;
-}
+ 
 
 .image-wrapper img {
     max-width: 96px;
@@ -39,10 +15,6 @@
     margin: 0 20px;
 }
 
-.icons-wrapper {
-    display: inline-flex;
-    align-items: center;
-}
 
 .icons {
     max-width: 30px;
@@ -51,27 +23,10 @@
     cursor: pointer;
 }
 
-.line-break {
-    width: 100%;
+header{
+    color: white;
 }
-
-.category-list {
-    width: 100%;
-}
-
-.categories {
-    width: 100%;
-    display: inline-flex;
-    justify-content: center;
-    gap: 3rem;
-    list-style: none;
-    font-size: 1.5rem;
-}
-
-.categories li {
-    cursor: pointer;
-}
-
+ 
 .slogan-text {
     display: flex;
     margin-top: 25px;

@@ -13,10 +13,7 @@ const orderSchema = new Schema(
                 ref: 'Product'
             }
         ]
-    },
-    {
-        toJSON: { getters: true }
-    }
+    } 
 )
 
 

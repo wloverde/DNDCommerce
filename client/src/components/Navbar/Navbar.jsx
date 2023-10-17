@@ -31,29 +31,15 @@ const Navbar = ({ setSelectedCategory, isLoggedIn, currentUser }) => {
   }
 
   return (
-    <nav className='content-flex header'>
-      {/* wraps the search icon, then when clicked renders the search bar conditionally */}
-      <div className='search-wrapper'>
-        <img
-          src={search}
-          onClick={() =>
-            displaySearch ? setDisplaySearch(false) : setDisplaySearch(true)
-          }
-        />
-        {displaySearch ? <SearchForm /> : <></>}
-        {isLoggedIn ? (
-          <p style={{ paddingLeft: '5px' }}>Welcome, {currentUser.username}</p>
-        ) : (
-          <></>
-        )}
-      </div>
-      {/* container for the icons on the navbar, they all link to their respective routes in the app jsx component */}
-      <div className='image-wrapper'>
-        <span>Twisted</span>
-        <Link to={'/'}>
-          <img className='mask mask-circle bg-white ' src={twistedTrout} />
+    <header className="flex-row px-1">
+      <h1>
+        <Link to="/">Twisted Trout</Link>
+      </h1>
+
+      <div className="image-wrapper">
+        <Link to={"/"}>
+          <img className="mask mask-circle bg-white " src={twistedTrout} />
         </Link>
-        <span>Trout</span>
       </div>
       <div className='menu menu-horizontal icons-wrapper'>
         <Link to={'/orderHistory'} className='tooltip' data-tip='Order History'>
@@ -88,8 +74,8 @@ const Navbar = ({ setSelectedCategory, isLoggedIn, currentUser }) => {
           20&#39;s so delivery is instant using Teleportation!✨
         </p>
       </div>
-    </nav>
+    </header>
   );
-};
+}
 
 export default Navbar;
