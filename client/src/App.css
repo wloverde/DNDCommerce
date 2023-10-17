@@ -2,3 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
+html, header, footer{
+    background-image: url("https://cdn.discordapp.com/attachments/1163639984927023165/1163643217980444692/sanpy_tarvern_wall_background_symetrical_4c5be17c-7d05-4f18-ba96-4dc6a7f1d433.png?ex=65405232&is=652ddd32&hm=dffa7b30ebb7b2ade9049c9d840cbd79ed44dd9a505259d1755efb297439a78e&");
+}
