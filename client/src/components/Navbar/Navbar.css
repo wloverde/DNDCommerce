@@ -2,11 +2,12 @@ ul{
     list-style-type: none;  
 } 
 
-.image-wrapper {
+
+/* .image-wrapper {
     display: flex;
     align-items: center;
     min-width: 33%;
-}
+} */
  
 
 .image-wrapper img {

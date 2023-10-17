@@ -53,12 +53,13 @@ function Nav() {
       <h1>
         <Link to="/">Twisted Trout</Link>
       </h1>
-
+    
       <div className="image-wrapper">
         <Link to={"/"}>
           <img className="mask mask-circle bg-white " src={twistedTrout} />
         </Link>
       </div>
+
       <nav>{showNavigation()}</nav>
 
       <div className="text-center slogan-text">
