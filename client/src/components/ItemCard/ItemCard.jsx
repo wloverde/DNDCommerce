@@ -1,5 +1,4 @@
-import React from 'react';
-import { useShoppingCart } from 'use-shopping-cart';
+import React from 'react'; 
 
 const ItemCard = ({
   itemName,
@@ -8,22 +7,22 @@ const ItemCard = ({
   itemStock,
   itemDescription,
   itemId,
-}) => { 
-  const shoppingCart = useShoppingCart(); 
-  const priceFormatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-  });
-  const addToCartHandler = (itemName, itemPrice, itemDescription, itemId) => {
-    const price = priceFormatter.format(itemPrice);
-    shoppingCart.addItem({
-      name: itemName,
-      description: itemDescription,
-      id: itemId,
-      price: price,
-      currency: 'USD',
-    });
-  };
+ }) => { 
+//   const shoppingCart = useShoppingCart(); 
+  // const priceFormatter = new Intl.NumberFormat('en-US', {
+  //   style: 'currency',
+  //   currency: 'USD',
+  // });
+  // const addToCartHandler = (itemName, itemPrice, itemDescription, itemId) => {
+  //   const price = priceFormatter.format(itemPrice);
+  //   shoppingCart.addItem({
+  //     name: itemName,
+  //     description: itemDescription,
+  //     id: itemId,
+  //     price: price,
+  //     currency: 'USD',
+  // //   });
+  // };
 
   return (
     <div className='card w-96 bg-base-200 shadow-xl image-full'>
