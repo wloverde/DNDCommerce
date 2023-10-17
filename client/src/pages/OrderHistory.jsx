@@ -1,16 +1,16 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
-import { useQuery } from '@apollo/client';
-import { QUERY_USER } from '../../utils/queries';
+import { useQuery } from "@apollo/client";
+import { QUERY_USER } from "../../utils/queries";
 
 function OrderHistory() {
   const { data } = useQuery(QUERY_USER);
   let user;
-
   if (data) {
-    user = data.user;
+    user = data.user; 
   }
+ 
 
   return (
     <>
@@ -19,9 +19,7 @@ function OrderHistory() {
 
         {user ? (
           <>
-            <h2>
-              Order History for {user.firstName} {user.lastName}
-            </h2>
+            <h2>Order History for {user.username}</h2>
             {user.orders.map((order) => (
               <div key={order._id} className="my-2">
                 <h3>
@@ -29,7 +27,7 @@ function OrderHistory() {
                 </h3>
                 <div className="flex-row">
                   {order.products.map(({ _id, image, name, price }, index) => (
-                    <div key={index} className="card px-1 py-1">
+                    <div key={index} className="card px-1 py-1"> 
                       <Link to={`/products/${_id}`}>
                         <img alt={name} src={`${image}`} />
                         <p>{name}</p>

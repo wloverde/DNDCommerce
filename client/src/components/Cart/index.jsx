@@ -4,6 +4,7 @@ import { useLazyQuery } from '@apollo/client';
 import { QUERY_CHECKOUT } from '../../../utils/queries';
 import { idbPromise } from '../../../utils/helpers';
 import CartItem from '../CartItem';
+import shoppingBag from '../../assets/images/shopping-bag.png';
 import Auth from '../../../utils/auth';
 import { useStoreContext } from '../../../utils/GlobalState';
 import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from '../../../utils/actions';
@@ -57,9 +58,7 @@ const Cart = () => {
   if (!state.cartOpen) {
     return (
       <div className="cart-closed" onClick={toggleCart}>
-        <span role="img" aria-label="trash">
-          🛒
-        </span>
+        <img src={shoppingBag}/>
       </div>
     );
   }

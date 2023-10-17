@@ -186,10 +186,7 @@ db.once('open', async () => {
     
     // seeding Order
     await Order.deleteMany();
-
-    const orders = await Order.insertMany([{
-        "products":  [products[0]._id, products[0]._id, products[1]._id]
-    }]) 
+ 
 
     // seeding User
     await User.deleteMany();
@@ -197,8 +194,7 @@ db.once('open', async () => {
     await User.create({
         username: 'AidanDaHustla', 
         email: 'AidanDaHustla@testmail.com',
-        password: 'password12345',
-        orders: orders[0]._id
+        password: 'password12345'
     });
 
     await User.create({

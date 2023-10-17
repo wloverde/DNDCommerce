@@ -9,13 +9,16 @@ import { setContext } from "@apollo/client/link/context";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import Category from "./components/Category/Category";
-import ItemPage from "./pages/ItemPage"; // Import your item description page component
+import Detail from "./pages/Detail"; // Import your item description page component
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Auth from "../utils/auth";
 import Profile from "./pages/Profile";
 import Footer from "./components/Footer/Footer";
 import Home from "./pages/Home";
+import OrderHistory from "./pages/OrderHistory";
+import Success from "./pages/Success";
+import NoMatch from "./pages/NoMatch";
 
 import { StoreProvider } from '../utils/GlobalState';
 
@@ -46,9 +49,7 @@ const client = new ApolloClient({
 
 function App() {
   //sets the initial state to be the consumables ObjectId
-  const [selectedCategory, setSelectedCategory] = useState(
-    "6528a02159e8e489b3cf815d"
-  );
+  const [selectedCategory, setSelectedCategory] = useState();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({
     username: "",
@@ -91,7 +92,7 @@ function App() {
                 path="/"
                 element={<Category selectedCategory={selectedCategory} />}
               />
-              <Route path="/item/:itemId" element={<ItemPage />} />
+              <Route path="/products/:id" element={<Detail />} />
               {/* Add more routes for other pages as needed */}
               <Route
                 path={`/profile`}
@@ -99,7 +100,21 @@ function App() {
                   isLoggedIn ? <Profile currentUser={currentUser} /> : <Login />
                 }
               />
-              {/* <Route path={`/checkout`} element={<Checkout />} /> */}
+              {/* Displays order history */}
+               <Route 
+                path="/orderHistory" 
+                element={<OrderHistory />} 
+              /> 
+              {/* If payment is successful - also adds order to order history */}
+               <Route 
+                path="/success" 
+                element={<Success />} 
+              />
+              {/* 404 page */}
+               <Route
+                path="*" 
+                element={<NoMatch />} 
+              />
               <Route path={"/signup"} element={<Signup />}></Route>
             </Routes>
           </StoreProvider>
