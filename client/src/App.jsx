@@ -7,15 +7,25 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar/Navbar';
-import Category from './components/Category/Category';
-import ItemPage from './pages/ItemPage'; // Import your item description page component
+ 
+
+import Home from './pages/Home';
+import Detail from './pages/Detail';
+import NoMatch from './pages/NoMatch';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import Auth from '../utils/auth';
-import Profile from './pages/Profile';
+import Nav from './components/Navbar/Navbar';
+import Success from './pages/Success';
+import OrderHistory from './pages/OrderHistory';
+
+
+
+import Auth from '../utils/auth'; 
+import { StoreProvider } from './../utils/GlobalState';
+
 import Footer from './components/Footer/Footer';
 // import Checkout from './pages/Checkout';
+
 import './App.css';
 
 const httpLink = createHttpLink({
@@ -67,35 +77,45 @@ function App() {
   // Define a callback function to set the selected category
   return (
     <ApolloProvider client={client}>
-      <Router>
-        {/* Pass the callback function as a prop */}
-        <Navbar
-          setSelectedCategory={setSelectedCategory}
-          isLoggedIn={isLoggedIn}
-          currentUser={currentUser}
-          selectedCategory={selectedCategory}
-        />
-        {/* image test, can be resized, replaced, etc. */}
-        <Routes>
-          {/* Defined our routes */}
-          <Route
-            path='/'
-            element={<Category selectedCategory={selectedCategory} />}
-          />
-          <Route path='/item/:itemId' element={<ItemPage />} />
-          {/* Add more routes for other pages as needed */}
-          <Route
-            path={`/profile`}
-            element={
-              isLoggedIn ? <Profile currentUser={currentUser} /> : <Login />
-            }
-          />
-          {/* {<Route path={`/checkout`} element={<Checkout />} />} */}
-          <Route path={'/signup'} element={<Signup />}></Route>
-        </Routes>
-        <Footer />
-      </Router>
-    </ApolloProvider>
+    <Router>
+      <div>
+        <StoreProvider>
+          <Nav />
+          <Routes>
+            <Route 
+              path="/" 
+              element={<Home />} 
+            />
+            <Route 
+              path="/login" 
+              element={<Login />} 
+            />
+            <Route 
+              path="/signup" 
+              element={<Signup />} 
+            />
+            <Route 
+              path="/success" 
+              element={<Success />} 
+            />
+            <Route 
+              path="/orderHistory" 
+              element={<OrderHistory />} 
+            />
+            <Route 
+              path="/products/:id" 
+              element={<Detail />} 
+            />
+            <Route
+              path="*" 
+              element={<NoMatch />} 
+            />
+          </Routes>
+        </StoreProvider>
+      </div>      
+    <Footer />
+    </Router>
+  </ApolloProvider>
   );
 }
 

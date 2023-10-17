@@ -1,43 +1,43 @@
- 
-const { gql } = require("apollo-server-express");
+const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-  type User {
-    _id: ID
-    username: String
-    email: String
-    orders: [Order]
-  }
-
-  type Order {
-    _id: ID
-    products: [Product]
-  }
-
-  type Product {
-    _id: ID
-    price: Float
-    quantity: Int
-    image: String
-    name: String
-    category: Category
-    description: String
-  }
-
   type Category {
     _id: ID
     name: String
   }
 
-  type Auth {
-    token: ID,
-    user: User
+  type Product {
+    _id: ID
+    name: String
+    description: String
+    image: String
+    quantity: Int
+    price: Float
+    category: Category
+  }
+
+  type Order {
+    _id: ID
+    purchaseDate: String
+    products: [Product]
+  }
+
+  type User {
+    _id: ID
+    firstName: String
+    lastName: String
+    email: String
+    orders: [Order]
   }
 
   type Checkout {
     session: ID
   }
 
+  type Auth {
+    token: ID
+    user: User
+  }
 
   input ProductInput {
     _id: ID
@@ -45,14 +45,15 @@ const typeDefs = gql`
     name: String
     image: String
     price: Float
+    quantity: Int
   }
 
   type Query {
-    user: User 
-    products(category:ID, name:String): [Product]
-    product(_id:ID!): Product
-    order(_id:ID!): Order  
     categories: [Category]
+    products(category: ID, name: String): [Product]
+    product(_id: ID!): Product
+    user: User
+    order(_id: ID!): Order
     checkout(products: [ProductInput]): Checkout
   }
 
@@ -63,9 +64,6 @@ const typeDefs = gql`
     updateProduct(_id: ID!, quantity: Int!): Product
     login(email: String!, password: String!): Auth
   }
-
-
-
 `;
 
-module.exports = typeDefs; 
+module.exports = typeDefs;

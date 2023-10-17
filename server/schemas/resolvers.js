@@ -4,35 +4,42 @@ const { signToken } = require('../utils/auth');
 const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
 const resolvers = {
-  // add queries
   Query: {
+    categories: async () => {
+      return await Category.find();
+    },
+    products: async (parent, { category, name }) => {
+      const params = {};
+
+      if (category) {
+        params.category = category;
+      }
+
+      if (name) {
+        params.name = {
+          $regex: name,
+        };
+      }
+
+      return await Product.find(params).populate('category');
+    },
+    product: async (parent, { _id }) => {
+      return await Product.findById(_id).populate('category');
+    },
     user: async (parent, args, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
           path: 'orders.products',
           populate: 'category',
         });
+
+        user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
+
         return user;
       }
+
       throw new AuthenticationError('Not logged in');
     },
-    products: async (parent, { category, name }) => {
-      const params = {};
-      if (category) {
-        params.category = category;
-      }
-      if (name) {
-        params.name = {
-          $regex: name,
-        };
-      }
-      return await Product.find(params).populate('category');
-    },
-
-    product: async (parent, { _id }) => {
-      return await Product.findById(_id).populate('category');
-    },
-
     order: async (parent, { _id }, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
@@ -42,18 +49,15 @@ const resolvers = {
 
         return user.orders.id(_id);
       }
+
       throw new AuthenticationError('Not logged in');
     },
-
-    categories: async () => {
-      return await Category.find();
-    },
-
     checkout: async (parent, args, context) => {
       const url = new URL(context.headers.referer).origin;
-      await Order.create({
-        products: args.products.map(({ _id }) => _id),
-      });
+      // We map through the list of products sent by the client to extract the _id of each item and create a new Order.
+      await Order.create({ products: args.products.map(({ _id }) => _id) });
+      const line_items = [];
+
       for (const product of args.products) {
         line_items.push({
           price_data: {
@@ -68,6 +72,7 @@ const resolvers = {
           quantity: product.purchaseQuantity,
         });
       }
+
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
         line_items,
@@ -75,11 +80,10 @@ const resolvers = {
         success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${url}/`,
       });
+
       return { session: session.id };
     },
   },
-
-  // add mutations
   Mutation: {
     addUser: async (parent, args) => {
       const user = await User.create(args);
@@ -88,6 +92,7 @@ const resolvers = {
       return { token, user };
     },
     addOrder: async (parent, { products }, context) => {
+      console.log(context);
       if (context.user) {
         const order = new Order({ products });
 
@@ -97,9 +102,10 @@ const resolvers = {
 
         return order;
       }
+
       throw new AuthenticationError('Not logged in');
     },
-    updateUser: async (parents, args, context) => {
+    updateUser: async (parent, args, context) => {
       if (context.user) {
         return await User.findByIdAndUpdate(context.user._id, args, {
           new: true,
@@ -108,17 +114,15 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
-
     updateProduct: async (parent, { _id, quantity }) => {
       const decrement = Math.abs(quantity) * -1;
 
-      return Product.findByIdAndUpdate(
+      return await Product.findByIdAndUpdate(
         _id,
         { $inc: { quantity: decrement } },
         { new: true }
       );
     },
-
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
