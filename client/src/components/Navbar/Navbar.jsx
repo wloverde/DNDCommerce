@@ -31,6 +31,7 @@ const Navbar = ({ setSelectedCategory, isLoggedIn, currentUser }) => {
   function showNavigation() {
     if (Auth.loggedIn()) {
       return (
+        <div className='menu menu-horizontal icons-wrapper'>
         <ul className="flex-row">
           <li className="mx-1">
             <Link to={"/profile"} className="tooltip" data-tip="Profile">
@@ -56,6 +57,7 @@ const Navbar = ({ setSelectedCategory, isLoggedIn, currentUser }) => {
         )}
           </li> 
         </ul>
+        </div>
       );
     } else {
       return (
@@ -96,10 +98,10 @@ const Navbar = ({ setSelectedCategory, isLoggedIn, currentUser }) => {
         </Link>
         <span>Trout</span>
       </div>
-      {showNavigation()}
+      
       <div className="menu menu-horizontal icons-wrapper">
         {/* conditionally renders the logout button based on the state passed in from the app jsx component */}
-        
+        {showNavigation()}
       </div>
       <div className="line-break" />
       <div className="category-list">
