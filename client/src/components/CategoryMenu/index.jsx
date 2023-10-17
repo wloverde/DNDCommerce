@@ -41,9 +41,9 @@ function CategoryMenu() {
   };
 
   return (
-    <div>
+    <div className='tabs '>
       {categories.map((item) => (
-        <button
+        <button className='tab tab-lifted text-xl text-white'
           key={item._id}
           onClick={() => {
             handleClick(item._id);
