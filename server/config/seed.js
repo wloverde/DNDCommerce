@@ -1,5 +1,5 @@
-const db = require('../config/connection');
-const { User, Order, Product, Category } = require('../models');
+const db = require('./connection');
+const { User, Order, Product, Category } = require('../models');  
 
 db.once('open', async () => {
     // seeding Categories:
@@ -25,7 +25,8 @@ db.once('open', async () => {
                 "price": 150,
                 "description": "a sharp, bladed weapon made of metal, commonly steel, with a short hilt",
                 "quantity": 10,
-                "category": categories[0]._id
+                "category": categories[0]._id,
+                "image" : ""
             },
             {
                 "name": "Bow",
@@ -39,7 +40,8 @@ db.once('open', async () => {
                 "price": 75,
                 "description": "Blocks some damage",
                 "quantity": 5,
-                "category": categories[0]._id
+                "category": categories[0]._id,
+                "image" : 'https://i.imgur.com/P9z9NUj.jpeg'
             },
             {
                 "name": "Staff",

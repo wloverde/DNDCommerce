@@ -15,6 +15,7 @@ import Signup from './pages/Signup';
 import Auth from '../utils/auth';
 import Profile from './pages/Profile';
 import Footer from './components/Footer/Footer';
+// import Checkout from './pages/Checkout';
 import './App.css';
 
 const httpLink = createHttpLink({
@@ -89,7 +90,7 @@ function App() {
               isLoggedIn ? <Profile currentUser={currentUser} /> : <Login />
             }
           />
-          {/* <Route path={`/checkout`} element={<Checkout />} /> */}
+          {/* {<Route path={`/checkout`} element={<Checkout />} />} */}
           <Route path={'/signup'} element={<Signup />}></Route>
         </Routes>
         <Footer />
