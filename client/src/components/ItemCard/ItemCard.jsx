@@ -42,7 +42,7 @@ const ItemCard = ({
             type='button'
             className='btn btn-primary'
             onClick={() => {
-              addToCartHandler(itemName, itemPrice, itemDescription, itemId)
+              //addToCartHandler(itemName, itemPrice, itemDescription, itemId)
             }}
           >
             Add to Cart
