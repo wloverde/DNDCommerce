@@ -1,20 +1,14 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App.jsx';
-import { CartProvider } from 'use-shopping-cart';
+import App from './App';
+import * as serviceWorker from './serviceWorker';
 
-const key = '';
-
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.render(
   <React.StrictMode>
-    <CartProvider
-      mode='payment'
-      cartMode='checkout-session'
-      stripe={key}
-      currency='USD'
-    >
-      <App />
-    </CartProvider>
-  </React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
 );
+ 
+serviceWorker.register();
