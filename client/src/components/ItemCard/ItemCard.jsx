@@ -1,5 +1,6 @@
 import React from 'react';
 import { useShoppingCart } from 'use-shopping-cart';
+import "./ItemCard.css"
 
 const ItemCard = ({
   itemName,
@@ -26,9 +27,9 @@ const ItemCard = ({
   };
 
   return (
-    <div className='card w-96 bg-base-200 shadow-xl image-full'>
+    <div className='card  w-96 bg-base-200 shadow-xl image-full'>
       <figure>
-        <img src={itemImage} alt={`Picture of ${itemName}`} />
+        <img src="{itemImage}" alt={`Picture of ${itemName}`} />
       </figure>
       <div className='card-body'>
         <h2 className='card-title'>{itemName}</h2>
