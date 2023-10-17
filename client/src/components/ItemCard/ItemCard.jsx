@@ -21,6 +21,7 @@ const ItemCard = ({
     shoppingCart.addItem({
       name: itemName,
       description: itemDescription,
+      image: itemImage,
       id: itemId,
       price: price,
       currency: 'USD',
@@ -30,7 +31,7 @@ const ItemCard = ({
   return (
     <div className='card  w-96 bg-base-200 shadow-xl image-full'>
       <figure>
-        <img src="{itemImage}" alt={`Picture of ${itemName}`} />
+        <img src={itemImage} alt={`Picture of ${itemName}`} />
       </figure>
       <div className='card-body'>
         <h2 className='card-title'>{itemName}</h2>
