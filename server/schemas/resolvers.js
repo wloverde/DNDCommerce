@@ -59,13 +59,14 @@ const resolvers = {
       const line_items = [];
 
       for (const product of args.products) {
+         
         line_items.push({
           price_data: {
             currency: 'usd',
             product_data: {
               name: product.name,
               description: product.description,
-              images: [`${url}/images/${product.image}`],
+              images: [`${product.image}`],
             },
             unit_amount: product.price * 100,
           },
