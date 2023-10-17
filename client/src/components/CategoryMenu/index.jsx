@@ -7,7 +7,6 @@ import {
 } from '../../../utils/actions';
 import { QUERY_CATEGORIES } from '../../../utils/queries';
 import { idbPromise } from '../../../utils/helpers';
-
 function CategoryMenu() {
   const [state, dispatch] = useStoreContext();
 
@@ -34,7 +33,7 @@ function CategoryMenu() {
     }
   }, [categoryData, loading, dispatch]);
 
-  const handleClick = (id) => {
+  const handleClick = (id) => { 
     dispatch({
       type: UPDATE_CURRENT_CATEGORY,
       currentCategory: id,
@@ -43,7 +42,6 @@ function CategoryMenu() {
 
   return (
     <div>
-      <h2>Choose a Category:</h2>
       {categories.map((item) => (
         <button
           key={item._id}

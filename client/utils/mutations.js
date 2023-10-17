@@ -31,7 +31,7 @@ export const ADD_ORDER = gql`
 
 export const ADD_USER = gql`
   mutation addUser(
-    $username: String!
+    $username:String!
     $email: String!
     $password: String!
   ) {
