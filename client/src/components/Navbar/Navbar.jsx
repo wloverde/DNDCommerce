@@ -11,7 +11,7 @@ import account from '../../assets/images/account.png';
 import logout from '../../assets/images/logout.png';
 import SearchForm from '../SearchForm/SearchForm';
 import Auth from '../../../utils/auth';
-import Category from '../../components/Category/Category'; 
+import Category from '../../components/Category/Category';  
 
 const Navbar = ({ setSelectedCategory, isLoggedIn, currentUser }) => {
   const [displaySearch, setDisplaySearch] = useState(false);
@@ -47,7 +47,7 @@ const Navbar = ({ setSelectedCategory, isLoggedIn, currentUser }) => {
       {/* container for the icons on the navbar, they all link to their respective routes in the app jsx component */}
       <div className='image-wrapper'>
         <span>Twisted</span>
-        <Link to={'/'}>
+        <Link to={'/'}  >
           <img className='mask mask-circle bg-white ' src={twistedTrout} />
         </Link>
         <span>Trout</span>

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import Cart from '../pages/Checkout';
 import { useStoreContext } from '../../utils/GlobalState';
 import {
   REMOVE_FROM_CART,
@@ -11,7 +10,7 @@ import {
 } from '../../utils/actions';
 import { QUERY_PRODUCTS } from '../../utils/queries';
 import { idbPromise } from '../../utils/helpers';
-import spinner from '../assets/images/spinner.gif';
+import spinner from '../assets/images/spinner.gif'; 
 
 function ItemPage() {
   const [state, dispatch] = useStoreContext();
@@ -23,10 +22,10 @@ function ItemPage() {
 
   const { products, cart } = state;
 
-  useEffect(() => {
+  useEffect(() => { 
     // already in global store
     if (products.length) {
-      setCurrentProduct(products.find((product) => product._id === id));
+      setCurrentProduct(products.find((product) => product._id === id)); 
     }
     // retrieved from server
     else if (data) {
@@ -107,7 +106,7 @@ function ItemPage() {
           />
         </div>
       ) : null}
-      {loading ? <img src={spinner} alt="loading" /> : null} 
+      {loading ? <img src={spinner} alt="loading" /> : null}  
     </>
   );
 }

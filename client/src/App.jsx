@@ -87,7 +87,7 @@ function App() {
 
               <Route path="/" element={<Home />} />
 
-              <Route path="/item/:itemId" element={<ItemPage />} />
+              <Route path="/item/:id" element={<ItemPage />} />
               {/* Add more routes for other pages as needed */}
               <Route
                 path={`/profile`}
