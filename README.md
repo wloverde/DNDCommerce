@@ -1,5 +1,46 @@
-# DNDCommerce
-A eCommerce Page themed around Dungeons and Dragons
+# DNDCommerce Twisted Trout
+An E-commerce website designed around Dungeons and Dragons that allows users to browse and buy good to enhance their DND experience.
 
-# heroku
+## Table Of Contents
+- [Installation](#installation)
+- [License](#license)
+- [How To Contribute](#how-to-contribute)
+- [Tests](#tests)
+- [Questions](#questions)
+
+## Installation
+To begin installation please follow the following instructions:
+
+1. Please open the CLI(command line interface)
+
+2. Run the command npm I to install all packages.
+
+3. Run the command npm run seed.
+
+4. Next run the command npm run build
+
+5. Next run the command npm run develop
+
+6. The react application will be running locally on your device!
+
+## License
+![License: MIT]
+(https://img.shields.io/badge/License-MIT-yellow.svg)
+
+License Link:
+https://opensource.org/licenses/MIT
+
+## How To Contribute
+Please click [here]
+https://github.com/wloverde/DNDCommerce to contribute.
+
+## Tests
+N/A
+
+## Questions
+If you have any questions or recommendations, please feel free to contribute or ask questions here:
+
+Github: [fzhao888](https://github.com/fzhao888), [aidancm1](https://github.com/Aidancm1), [alexanderolivares13](https://github.com/alexanderolivares13), [wloverde](https://github.com/wloverde)
+
+# Heroku Deployment
 https://dnd-commerce-3caad9c94c17.herokuapp.com/
