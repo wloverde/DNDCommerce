@@ -23,7 +23,8 @@
     "url": "https://github.com/wloverde/DNDCommerce/issues"
   },
   "devDependencies": {
-    "concurrently": "^5.1.0"
+    "concurrently": "^5.1.0",
+    "vite-plugin-pwa": "^0.16.5"
   },
   "homepage": "https://github.com/wloverde/DNDCommerce#readme",
   "dependencies": {
