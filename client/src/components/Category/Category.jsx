@@ -1,83 +1,61 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/client';
-import { QUERY_PRODUCTS } from '../../../utils/queries';
-// import dragon from '../../assets/images/homepage-dragon.jpg';
-import ItemCard from '../ItemCard/ItemCard';
+import { useStoreContext } from '../../../utils/GlobalState';
+import {
+  UPDATE_CATEGORIES,
+  UPDATE_CURRENT_CATEGORY,
+} from '../../../utils/actions';
+import { QUERY_CATEGORIES } from '../../../utils/queries';
+import { idbPromise } from '../../../utils/helpers';
 
-import './Category.css';
-/**
- * Renders a list of items based on the selected category.
- * @param {Object} props - The component props.
- * @param {string} props.selectedCategory - The selected category to fetch items for.
- */
-const Category = ({ selectedCategory }) => {
-  // State to hold the items for the selected category
-  // const [categoryItems, setCategoryItems] = useState([]);
+function CategoryMenu() {
+  const [state, dispatch] = useStoreContext();
 
-  // Set the category title based on the selected category
-  let categoryTitle = '';
-  switch (selectedCategory) {
-    case '6528a02159e8e489b3cf8159':
-      categoryTitle = 'Melee';
-      break;
-    case '6528a02159e8e489b3cf815b':
-      categoryTitle = 'Magic';
-      break;
-    case '6528a02159e8e489b3cf815a':
-      categoryTitle = 'Ranged';
-      break;
-    case '6528a02159e8e489b3cf815c':
-      categoryTitle = 'Armor';
-      break;
-    case '6528a02159e8e489b3cf815d':
-      categoryTitle = 'Consumables';
-      break;
-    default:
-      categoryTitle = '';
-      break;
-  }
-  // query products based on the selected category
-  const {
-    loading: loadingProducts,
-    error: errorProducts,
-    data: dataProducts,
-  } = useQuery(QUERY_PRODUCTS, {
-    variables: { category: selectedCategory },
-  });
+  const { categories } = state;
 
-  if (loadingProducts) {
-    return <span className='loading loading-dots loading-lg'></span>;
-  }
+  const { loading, data: categoryData } = useQuery(QUERY_CATEGORIES);
+
+  useEffect(() => {
+    if (categoryData) {
+      dispatch({
+        type: UPDATE_CATEGORIES,
+        categories: categoryData.categories,
+      });
+      categoryData.categories.forEach((category) => {
+        idbPromise('categories', 'put', category);
+      });
+    } else if (!loading) {
+      idbPromise('categories', 'get').then((categories) => {
+        dispatch({
+          type: UPDATE_CATEGORIES,
+          categories: categories,
+        });
+      });
+    }
+  }, [categoryData, loading, dispatch]);
+
+  const handleClick = (id) => {
+    dispatch({
+      type: UPDATE_CURRENT_CATEGORY,
+      currentCategory: id,
+    });
+  };
 
   return (
-    <div className='category-container'>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        {/* <img
-          src={dragon}
-          style={{ borderRadius: '12px', boxShadow: '0 0 8px' }}
-        /> */}
-      </div>
-      <h2 style={{ margin: '25px 0', fontSize: '2rem', fontWeight: 'bold' }}>
-        {categoryTitle}
-      </h2>
-      <div className='item-list'>
-        {dataProducts.products.map((item) => (
-          // <Link to={`/item/${item._id}`} key={item._id}>
-          <ItemCard
-            key={item._id}
-            itemId={item._id}
-            itemName={item.name}
-            itemImage={item.image}
-            itemPrice={item.price}
-            itemStock={item.quantity}
-            itemDescription={item.description}
-          />
-          // </Link>
-        ))}
-      </div>
-    </div>
+    <div className='category-container'> 
+       
+        {categories.map((item) => (
+        <button  style={{ margin: '25px 0', fontSize: '2rem', fontWeight: 'bold' }}
+          key={item._id}
+          onClick={() => {
+            handleClick(item._id);
+          }}
+        >
+          {item.name}
+        </button>
+      ))}
+      </div> 
   );
-};
+}
 
-export default Category;
+export default CategoryMenu;

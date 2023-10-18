@@ -11,6 +11,7 @@ import account from '../../assets/images/account.png';
 import logout from '../../assets/images/logout.png';
 import SearchForm from '../SearchForm/SearchForm';
 import Auth from '../../../utils/auth';
+import Category from '../../components/Category/Category'; 
 
 const Navbar = ({ setSelectedCategory, isLoggedIn, currentUser }) => {
   const [displaySearch, setDisplaySearch] = useState(false);
@@ -76,13 +77,9 @@ const Navbar = ({ setSelectedCategory, isLoggedIn, currentUser }) => {
       </div>
       <div className='line-break' />
       <div className='category-list'>
-        <ul className='categories'>
+        <ul className='categories tabs'>
           {/* render the cagetories with a query */}
-          {dataCategories.categories.map((category) => (
-            <li key={category._id} onClick={() => categoryClick(category)}>
-              {category.name}
-            </li>
-          ))}
+          < Category />
         </ul>
       </div>
       <div className='text-center slogan-text'>
