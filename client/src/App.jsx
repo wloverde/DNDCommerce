@@ -74,11 +74,8 @@ function App() {
         <div>
           <StoreProvider>
             {/* Pass the callback function as a prop */}
-            <Navbar
-              setSelectedCategory={setSelectedCategory}
-              isLoggedIn={isLoggedIn}
-              currentUser={currentUser}
-              selectedCategory={selectedCategory}
+            <Navbar  
+              currentUser={currentUser} 
             />
 
             {/* image test, can be resized, replaced, etc. */}

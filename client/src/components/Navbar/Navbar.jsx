@@ -1,7 +1,5 @@
 import './Navbar.css';
-import { useState } from 'react';
-import { useQuery } from '@apollo/client';
-import { QUERY_CATEGORIES } from '../../../utils/queries';
+import { useState } from 'react'; 
 import { Link } from 'react-router-dom';
 import twistedTrout from '../../assets/images/twisted-trout.svg';
 import search from '../../assets/images/magnifying-glass.svg';
@@ -13,20 +11,9 @@ import SearchForm from '../SearchForm/SearchForm';
 import Auth from '../../../utils/auth';
 import Category from '../../components/Category/Category';  
 
-const Navbar = ({ setSelectedCategory, isLoggedIn, currentUser }) => {
+const Navbar = ({ currentUser }) => {
   const [displaySearch, setDisplaySearch] = useState(false);
-
-  const {
-    loading: loadingCategories,
-    error: errorCategories,
-    data: dataCategories,
-  } = useQuery(QUERY_CATEGORIES);
- 
-
-  if (loadingCategories) {
-    return <span className='loading loading-dots loading-lg'></span>;
-  }
-
+  
   return (
     <nav className='content-flex header'>
       {/* wraps the search icon, then when clicked renders the search bar conditionally */}
@@ -38,7 +25,7 @@ const Navbar = ({ setSelectedCategory, isLoggedIn, currentUser }) => {
           }
         />
         {displaySearch ? <SearchForm /> : <></>}
-        {isLoggedIn ? (
+        {Auth.loggedIn() ? (
           <p style={{ paddingLeft: '5px' }}>Welcome, {currentUser.username}</p>
         ) : (
           <></>
@@ -63,7 +50,7 @@ const Navbar = ({ setSelectedCategory, isLoggedIn, currentUser }) => {
           <img className='h-8 w-8 icons' src={account} />
         </Link>
         {/* conditionally renders the logout button based on the state passed in from the app jsx component */}
-        {isLoggedIn ? (
+        {Auth.loggedIn() ? (
           <div className='tooltip' data-tip='Logout'>
             <img className='h-8 w-8 icons' src={logout} onClick={Auth.logout} />
           </div>
