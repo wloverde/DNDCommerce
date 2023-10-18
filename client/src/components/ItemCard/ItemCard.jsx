@@ -28,7 +28,7 @@ const ItemCard = ({
   };
 
   return (
-    <div className='card  w-96 bg-base-200 shadow-xl image-full'>
+    <div className='card bg w-96 bg-base-100 shadow-xl'>
       <figure>
         <img src={itemImage} alt={`Picture of ${itemName}`} />
       </figure>
@@ -39,8 +39,8 @@ const ItemCard = ({
           className='card-actions justify-end'
           style={{ alignItems: 'center' }}
         >
+          <h4 className='fo'>${itemPrice}</h4>
           <p>In Stock: {itemStock}</p>
-          <p>${itemPrice}</p>
           <button
             type='button'
             className='btn btn-primary'
