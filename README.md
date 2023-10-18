@@ -27,6 +27,8 @@ To begin installation please follow the following instructions:
 ![License: MIT]
 (https://img.shields.io/badge/License-MIT-yellow.svg)
 
+License Link:
+https://opensource.org/licenses/MIT
 
 
 # heroku
