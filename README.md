@@ -37,5 +37,10 @@ https://github.com/wloverde/DNDCommerce to contribute.
 ## Tests
 N/A
 
+## Questions
+If you have any questions or recommendations, please feel free to contribute or ask questions here:
+
+Github: [fzhao888](https://github.com/fzhao888), [aidancm1](https://github.com/Aidancm1), [alexanderolivares13](https://github.com/alexanderolivares13), [wloverde](https://github.com/wloverde)
+
 # heroku
 https://dnd-commerce-3caad9c94c17.herokuapp.com/
