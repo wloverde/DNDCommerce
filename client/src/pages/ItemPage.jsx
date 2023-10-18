@@ -82,17 +82,22 @@ function ItemPage() {
   return (
     <>
       {currentProduct && cart ? (
-        <div className="container my-1 card">
-          <Link to="/">← Back to Products</Link>
-
-          <h2>{currentProduct.name}</h2>
+        <div className="container card card-side shadow-xl">
+          <figure><img
+            src={currentProduct.image}
+            alt={currentProduct.name}
+          /></figure>
+          <div className="card-body">
+          <div className='justify-end'><Link to="/">← Back to Products</Link></div>
+          <h2 className="card-title" >{currentProduct.name}</h2>
 
           <p>{currentProduct.description}</p>
 
-          <p>
-            <strong>Price:</strong>${currentProduct.price}{' '}
-            <button onClick={addToCart}>Add to Cart</button>
-            <button
+          <strong>Price:</strong>${currentProduct.price}{' '}
+          <p className="card-actions justify-end">
+
+            <button className="btn" onClick={addToCart}>Add to Cart</button>
+            <button className="btn"
               disabled={!cart.find((p) => p._id === currentProduct._id)}
               onClick={removeFromCart}
             >
@@ -100,10 +105,7 @@ function ItemPage() {
             </button>
           </p>
 
-          <img
-            src={currentProduct.image}
-            alt={currentProduct.name}
-          />
+          </div>
         </div>
       ) : null}
       {loading ? <img src={spinner} alt="loading" /> : null}  
