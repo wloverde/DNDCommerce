@@ -8,7 +8,7 @@ import {
 import { QUERY_CATEGORIES } from '../../../utils/queries';
 import { idbPromise } from '../../../utils/helpers';
 
-function CategoryMenu() {
+function Category() {
   const [state, dispatch] = useStoreContext();
 
   const { categories } = state;
@@ -34,7 +34,7 @@ function CategoryMenu() {
     }
   }, [categoryData, loading, dispatch]);
 
-  const handleClick = (id) => {
+  const handleClick = (id) => { 
     dispatch({
       type: UPDATE_CURRENT_CATEGORY,
       currentCategory: id,
@@ -42,10 +42,9 @@ function CategoryMenu() {
   };
 
   return (
-    <div className='category-container'> 
-       
-        {categories.map((item) => (
-        <button  style={{ margin: '25px 0', fontSize: '2rem', fontWeight: 'bold' }}
+    <div className='category container'>        
+        {categories.map((item) => (          
+        <button  
           key={item._id}
           onClick={() => {
             handleClick(item._id);
@@ -58,4 +57,4 @@ function CategoryMenu() {
   );
 }
 
-export default CategoryMenu;
+export default Category;

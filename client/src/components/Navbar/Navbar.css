@@ -55,19 +55,29 @@
     width: 100%;
 }
 
-.category-list {
+.category-list { 
     width: 100%;
 }
 
-.categories {
+.category {
     width: 100%;
-    display: inline-flex;
+    display: flex;
     justify-content: center;
     gap: 3rem;
     list-style: none;
-    font-size: 1.5rem;
+    font-size: 1.5rem; 
+    display: flex;
+    margin: '25px 0';
+    font-size: '2rem';
+    font-weight: 'bold';
+    flex-direction: 'row';
 }
 
+
+.category-list {
+    width: 100%;
+}
+  
 .categories li {
     cursor: pointer;
 }
