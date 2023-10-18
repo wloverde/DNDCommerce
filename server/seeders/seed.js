@@ -1,5 +1,5 @@
-const db = require('./connection');
-const { User, Order, Product, Category } = require('../models');  
+const db = require('../config/connection');
+const { User, Order, Product, Category } = require('../models');
 
 db.once('open', async () => {
     // seeding Categories:

@@ -9,8 +9,7 @@ const ItemCard = ({
   itemDescription,
   itemId,
 }) => {
-  console.log(itemImage);
-  const shoppingCart = useShoppingCart(); 
+  const shoppingCart = useShoppingCart();
   const priceFormatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
