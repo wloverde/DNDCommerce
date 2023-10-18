@@ -17,8 +17,11 @@ import Profile from "./pages/Profile";
 import Footer from "./components/Footer/Footer";
 import Checkout from "./pages/Checkout";
 import { StoreProvider } from "../utils/GlobalState";
-import Home from './pages/Home';
+import Home from "./pages/Home";
 import "./App.css";
+import OrderHistory from "./pages/OrderHistory";
+import Success from "./pages/Success";
+import PageNotFound from "./pages/PageNotFound";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -45,7 +48,7 @@ const client = new ApolloClient({
 
 function App() {
   //sets the initial state to be the consumables ObjectId
-  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({
     username: "",
@@ -81,9 +84,9 @@ function App() {
             {/* image test, can be resized, replaced, etc. */}
             <Routes>
               {/* Defined our routes */}
-              
-            <Route path="/" element={<Home />} />
-             
+
+              <Route path="/" element={<Home />} />
+
               <Route path="/item/:itemId" element={<ItemPage />} />
               {/* Add more routes for other pages as needed */}
               <Route
@@ -94,6 +97,9 @@ function App() {
               />
               <Route path={`/checkout`} element={<Checkout />} />
               <Route path={"/signup"} element={<Signup />}></Route>
+              <Route path="/orderHistory" element={<OrderHistory />} />
+              <Route path="/success" element={<Success />} />
+              <Route path="*" element={<PageNotFound />} />
             </Routes>
           </StoreProvider>
         </div>

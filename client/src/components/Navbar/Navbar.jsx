@@ -21,11 +21,7 @@ const Navbar = ({ setSelectedCategory, isLoggedIn, currentUser }) => {
     error: errorCategories,
     data: dataCategories,
   } = useQuery(QUERY_CATEGORIES);
-
-  const categoryClick = (category) => {
-    const categoryId = category._id;
-    setSelectedCategory(categoryId); // Call the callback function
-  };
+ 
 
   if (loadingCategories) {
     return <span className='loading loading-dots loading-lg'></span>;

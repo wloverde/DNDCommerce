@@ -4,7 +4,7 @@ import './Profile.css';
 
 const Profile = ({ currentUser }) => {
   return (
-    <div className='profile'>
+    <div className='profile'>       
       <div className='card lg:card-side bg-base-100 shadow-xl'>
         <figure>
           <div className='avatar'>
