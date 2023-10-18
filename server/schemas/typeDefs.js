@@ -29,11 +29,6 @@ const typeDefs = gql`
     name: String
   }
 
-  type Auth {
-    token: ID,
-    user: User
-  }
-
   type Checkout {
     session: ID
   }
@@ -50,6 +45,9 @@ const typeDefs = gql`
     image: String
     price: Float
     quantity: Int
+    _typename:String
+    category:String
+    description:String
   }
 
   type Query {

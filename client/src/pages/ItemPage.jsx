@@ -22,7 +22,7 @@ function ItemPage() {
 
   const { products, cart } = state;
 
-  useEffect(() => { 
+  useEffect(() => {   
     // already in global store
     if (products.length) {
       setCurrentProduct(products.find((product) => product._id === id)); 
@@ -61,7 +61,7 @@ function ItemPage() {
         ...itemInCart,
         purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
       });
-    } else {
+    } else {   
       dispatch({
         type: ADD_TO_CART,
         product: { ...currentProduct, purchaseQuantity: 1 },
