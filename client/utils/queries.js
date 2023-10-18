@@ -41,7 +41,7 @@ export const QUERY_CHECKOUT = gql`
 `;
 
 export const QUERY_ALL_PRODUCTS = gql`
-  query getAllProducts {
+  {
     products {
       _id
       name
@@ -56,7 +56,7 @@ export const QUERY_ALL_PRODUCTS = gql`
 `;
 
 export const QUERY_CATEGORIES = gql`
-  query getCategories {
+  {
     categories {
       _id
       name
@@ -68,9 +68,9 @@ export const QUERY_USER = gql`
   {
     user {
       username
-      email
       orders {
         _id
+        purchaseDate
         products {
           _id
           name

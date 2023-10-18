@@ -1,59 +1,60 @@
-import React from 'react';
-import { useShoppingCart } from 'use-shopping-cart';
-import "./ItemCard.css"
+import React from "react";
+import { Link } from "react-router-dom";
+import { pluralize } from "../../../utils/helpers";
+import { useStoreContext } from "../../../utils/GlobalState";
+import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../../../utils/actions";
+import { idbPromise } from "../../../utils/helpers";
+import "./ItemCard.css";
 
-const ItemCard = ({
-  itemName,
-  itemImage,
-  itemPrice,
-  itemStock,
-  itemDescription,
-  itemId,
-}) => {
-  const shoppingCart = useShoppingCart();
-  const priceFormatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-  });
-  const addToCartHandler = (itemName, itemPrice, itemDescription, itemId) => {
-    const price = priceFormatter.format(itemPrice);
-    shoppingCart.addItem({
-      name: itemName,
-      description: itemDescription,
-      image: itemImage,
-      id: itemId,
-      price: price,
-      currency: 'USD',
-    });
+function ItemCard(item) {
+  const [state, dispatch] = useStoreContext();
+
+  const { image, name, _id, price, quantity } = item;
+
+  const { cart } = state;
+
+  const addToCart = () => {
+    const itemInCart = cart.find((cartItem) => cartItem._id === _id);
+    if (itemInCart) {
+      dispatch({
+        type: UPDATE_CART_QUANTITY,
+        _id: _id,
+        purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
+      });
+      idbPromise("cart", "put", {
+        ...itemInCart,
+        purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
+      });
+    } else {
+      dispatch({
+        type: ADD_TO_CART,
+        product: { ...item, purchaseQuantity: 1 },
+      });
+      idbPromise("cart", "put", { ...item, purchaseQuantity: 1 });
+    }
   };
 
   return (
-    <div className='card bg w-96 bg-base-100 shadow-xl'>
-      <figure>
-        <img src={itemImage} alt={`Picture of ${itemName}`} />
-      </figure>
-      <div className='card-body'>
-        <h2 className='card-title'>{itemName}</h2>
-        <p>{itemDescription}</p>
-        <div
-          className='card-actions justify-end'
-          style={{ alignItems: 'center' }}
-        >
-          <h4 className='fo'>${itemPrice}</h4>
-          <p>In Stock: {itemStock}</p>
-          <button
-            type='button'
-            className='btn btn-primary'
-            onClick={() => {
-              addToCartHandler(itemName, itemPrice, itemDescription, itemId)
-            }}
-          >
-            Add to Cart
-          </button>
+    <div className="card w-80 shadow-xl">
+        <Link to={`/item/${_id}`}>
+          <figure>
+            <img alt={name} src={image} />
+          </figure>
+          <p className="card-title">{name}</p>
+        </Link>
+      <div className="card-body">
+        <span className="text-xl">Price: ${price}</span>
+        <div>
+          {quantity} {pluralize("item", quantity)} in stock
         </div>
+      </div>
+      <div className="card-actions">
+        <button className="btn " onClick={addToCart}>
+          Add to cart
+        </button>
       </div>
     </div>
   );
-};
+}
 
 export default ItemCard;
