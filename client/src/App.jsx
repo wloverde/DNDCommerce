@@ -82,7 +82,7 @@ function App() {
             <Routes>
               {/* Defined our routes */}
               
-            <Route path="/" element={<Home selectedCategory={selectedCategory} />} />
+            <Route path="/" element={<Home />} />
              
               <Route path="/item/:itemId" element={<ItemPage />} />
               {/* Add more routes for other pages as needed */}
