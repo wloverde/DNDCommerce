@@ -7,11 +7,10 @@ import CartItem from '../components/CartItem/CartItem';
 import Auth from '../../utils/auth';
 import { useStoreContext } from '../../utils/GlobalState';
 import { ADD_MULTIPLE_TO_CART } from '../../utils/actions'; 
-import ItemCard from '../components/ItemCard/ItemCard';
  
 const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
-const Checkout = () => {
+const Cart = () => {
   const [state, dispatch] = useStoreContext();
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
 
@@ -32,8 +31,8 @@ const Checkout = () => {
     if (!state.cart.length) {
       getCart();
     }
-  }, [state.cart.length, dispatch]);
- 
+  }, [state.cart.length, dispatch]); 
+
   function calculateTotal() {
     let sum = 0;
     state.cart.forEach((item) => {
@@ -81,4 +80,4 @@ const Checkout = () => {
   );
 };
 
-export default Checkout;
+export default Cart;

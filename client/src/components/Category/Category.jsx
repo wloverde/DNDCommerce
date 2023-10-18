@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { QUERY_PRODUCTS } from '../../../utils/queries';
-import dragon from '../../assets/images/homepage-dragon.jpg';
+// import dragon from '../../assets/images/homepage-dragon.jpg';
 import ItemCard from '../ItemCard/ItemCard';
 
 import './Category.css';
@@ -34,7 +34,7 @@ const Category = ({ selectedCategory }) => {
       categoryTitle = 'Consumables';
       break;
     default:
-      categoryTitle = 'Consumables';
+      categoryTitle = '';
       break;
   }
   // query products based on the selected category
@@ -53,10 +53,10 @@ const Category = ({ selectedCategory }) => {
   return (
     <div className='category-container'>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <img
+        {/* <img
           src={dragon}
           style={{ borderRadius: '12px', boxShadow: '0 0 8px' }}
-        />
+        /> */}
       </div>
       <h2 style={{ margin: '25px 0', fontSize: '2rem', fontWeight: 'bold' }}>
         {categoryTitle}
