@@ -7,7 +7,7 @@ import CartItem from '../components/CartItem/CartItem';
 import Auth from '../../utils/auth';
 import { useStoreContext } from '../../utils/GlobalState';
 import { ADD_MULTIPLE_TO_CART } from '../../utils/actions'; 
-import ItemCard from '../components/ItemCard/ItemCard';
+import './Checkout.css';
  
 const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
