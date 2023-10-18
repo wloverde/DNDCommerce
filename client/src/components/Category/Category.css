@@ -13,13 +13,8 @@
   justify-content: space-evenly;
   max-width: 80%;
   gap: 2rem;
-  /* limiting to 80% of the screenwidth to be more inline with the rest of the content on the page*/
-  max-height: 5 * (
-      /* Height of one row */
-      /* Specify the height you want for each row */
-    );
+  max-height: 5 * ();
   overflow-y: auto;
-  /* Enable vertical scrolling if more than 5 rows */
 }
 
 .category-button {
