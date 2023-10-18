@@ -9,8 +9,7 @@ import account from '../../assets/images/account.png';
 import logout from '../../assets/images/logout.png';
 import SearchForm from '../SearchForm/SearchForm';
 import Auth from '../../../utils/auth';
-import Category from '../../components/Category/Category';  
-import ItemList from '../../components/ItemList/ItemList'
+import Category from '../../components/Category/Category';   
 
 const Navbar = ({ currentUser }) => {
   const [displaySearch, setDisplaySearch] = useState(false);
