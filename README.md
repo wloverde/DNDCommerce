@@ -42,5 +42,5 @@ If you have any questions or recommendations, please feel free to contribute or 
 
 Github: [fzhao888](https://github.com/fzhao888), [aidancm1](https://github.com/Aidancm1), [alexanderolivares13](https://github.com/alexanderolivares13), [wloverde](https://github.com/wloverde)
 
-# heroku
+# Heroku Deployment
 https://dnd-commerce-3caad9c94c17.herokuapp.com/
