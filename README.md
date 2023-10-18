@@ -34,5 +34,8 @@ https://opensource.org/licenses/MIT
 Please click [here]
 https://github.com/wloverde/DNDCommerce to contribute.
 
+## Tests
+N/A
+
 # heroku
 https://dnd-commerce-3caad9c94c17.herokuapp.com/
