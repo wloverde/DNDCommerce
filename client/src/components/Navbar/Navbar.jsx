@@ -67,10 +67,6 @@ const Navbar = ({ currentUser }) => {
       </div>
       <div className='line-break' />
       <div className='category-list'>
-        <ul className='categories tabs'>
-          {/* render the cagetories with a query */}
-          < Category />
-        </ul>
       </div>
       <div className='text-center slogan-text'>
         <p className='text-3xl font-bold'>

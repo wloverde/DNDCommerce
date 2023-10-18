@@ -29,11 +29,6 @@ const typeDefs = gql`
     name: String
   }
 
-  type Auth {
-    token: ID,
-    user: User
-  }
-
   type Checkout {
     session: ID
   }
