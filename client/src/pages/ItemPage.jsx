@@ -82,7 +82,7 @@ function ItemPage() {
   return (
     <>
       {currentProduct && cart ? (
-        <div className="container my-1">
+        <div className="container my-1 card">
           <Link to="/">← Back to Products</Link>
 
           <h2>{currentProduct.name}</h2>
