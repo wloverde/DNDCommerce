@@ -5,7 +5,7 @@ import { QUERY_CATEGORIES } from '../../../utils/queries';
 import { Link } from 'react-router-dom';
 import twistedTrout from '../../assets/images/twisted-trout.svg';
 import search from '../../assets/images/magnifying-glass.svg';
-import favorites from '../../assets/images/heart.png';
+import orderHistory from '../../assets/images/orderHistory.png';
 import shoppingBag from '../../assets/images/shopping-bag.png';
 import account from '../../assets/images/account.png';
 import logout from '../../assets/images/logout.png';
@@ -57,8 +57,8 @@ const Navbar = ({ setSelectedCategory, isLoggedIn, currentUser }) => {
         <span>Trout</span>
       </div>
       <div className='menu menu-horizontal icons-wrapper'>
-        <Link to={'/favorites'} className='tooltip' data-tip='Favorites'>
-          <img className='h-8 w-8 icons' src={favorites} />
+        <Link to={'/orderHistory'} className='tooltip' data-tip='Order History'>
+          <img className='h-8 w-8 icons' src={orderHistory} />
         </Link>
         <Link to={'/checkout'} className='tooltip' data-tip='Cart'>
           <img className='h-8 w-8 icons' src={shoppingBag} />
