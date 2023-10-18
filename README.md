@@ -30,6 +30,9 @@ To begin installation please follow the following instructions:
 License Link:
 https://opensource.org/licenses/MIT
 
+## How To Contribute
+Please click [here]
+https://github.com/wloverde/DNDCommerce to contribute.
 
 # heroku
 https://dnd-commerce-3caad9c94c17.herokuapp.com/
