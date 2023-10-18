@@ -23,6 +23,11 @@ To begin installation please follow the following instructions:
 
 6. The react application will be running locally on your device!
 
+## License
+![License: MIT]
+(https://img.shields.io/badge/License-MIT-yellow.svg)
+
+
 
 # heroku
 https://dnd-commerce-3caad9c94c17.herokuapp.com/
