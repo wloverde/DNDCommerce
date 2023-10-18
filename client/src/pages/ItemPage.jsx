@@ -107,8 +107,7 @@ function ItemPage() {
           />
         </div>
       ) : null}
-      {loading ? <img src={spinner} alt="loading" /> : null}
-      <Cart />
+      {loading ? <img src={spinner} alt="loading" /> : null} 
     </>
   );
 }

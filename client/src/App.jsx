@@ -95,7 +95,7 @@ function App() {
                   isLoggedIn ? <Profile currentUser={currentUser} /> : <Login />
                 }
               />
-              <Route path={`/checkout`} element={<Checkout />} />
+              <Route path={'/checkout'} element={<Checkout />} />
               <Route path={"/signup"} element={<Signup />}></Route>
               <Route path="/orderHistory" element={<OrderHistory />} />
               <Route path="/success" element={<Success />} />
