@@ -5,7 +5,7 @@ import Category from "../components/Category/Category";
 const Home = () => {
   return (
     <div className="container"> 
-      <ItemList />
+      <ItemList /> 
     </div>
   );
 };

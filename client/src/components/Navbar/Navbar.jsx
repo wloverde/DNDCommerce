@@ -21,10 +21,7 @@ const Navbar = ({ currentUser }) => {
     }, 500);
     console.log('page to reload')
 }
-
-function showNavigation() {
-
-}
+ 
   return (
     <nav className='content-flex header'>
       {/* wraps the search icon, then when clicked renders the search bar conditionally */}
