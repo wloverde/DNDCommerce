@@ -63,7 +63,7 @@ const Category = ({ selectedCategory }) => {
       </h2>
       <div className='item-list'>
         {dataProducts.products.map((item) => (
-          // <Link to={`/item/${item._id}`} key={item._id}>
+          <Link to={`/item/${item._id}`} key={item._id}>
           <ItemCard
             key={item._id}
             itemId={item._id}
@@ -73,7 +73,7 @@ const Category = ({ selectedCategory }) => {
             itemStock={item.quantity}
             itemDescription={item.description}
           />
-          // </Link>
+          </Link>
         ))}
       </div>
     </div>
