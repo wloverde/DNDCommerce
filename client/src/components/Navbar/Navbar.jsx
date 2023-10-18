@@ -63,7 +63,7 @@ const Navbar = ({ currentUser }) => {
 
             <label
               htmlFor="my-drawer-4"
-              className="drawer-button btn btn-primary"
+              className="drawer-button"
             >
               <img className="h-8 w-8 icons" src={shoppingBag} />
             </label>
