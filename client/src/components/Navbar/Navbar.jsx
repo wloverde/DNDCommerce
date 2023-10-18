@@ -10,10 +10,17 @@ import logout from '../../assets/images/logout.png';
 import SearchForm from '../SearchForm/SearchForm';
 import Auth from '../../../utils/auth';
 import Category from '../../components/Category/Category';  
+import ItemList from '../../components/ItemList/ItemList'
 
 const Navbar = ({ currentUser }) => {
   const [displaySearch, setDisplaySearch] = useState(false);
   
+  function refreshPage() {
+    setTimeout(()=>{
+        window.location.reload(false);
+    }, 500);
+    console.log('page to reload')
+}
   return (
     <nav className='content-flex header'>
       {/* wraps the search icon, then when clicked renders the search bar conditionally */}
@@ -34,9 +41,9 @@ const Navbar = ({ currentUser }) => {
       {/* container for the icons on the navbar, they all link to their respective routes in the app jsx component */}
       <div className='image-wrapper'>
         <span>Twisted</span>
-        <Link to={'/'}  >
+        <Link to={'/'} onClick={refreshPage}>
           <img className='mask mask-circle bg-white ' src={twistedTrout} />
-        </Link>
+        </Link>s
         <span>Trout</span>
       </div>
       <div className='menu menu-horizontal icons-wrapper'>
