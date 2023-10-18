@@ -21,6 +21,10 @@ const Navbar = ({ currentUser }) => {
     }, 500);
     console.log('page to reload')
 }
+
+function showNavigation() {
+
+}
   return (
     <nav className='content-flex header'>
       {/* wraps the search icon, then when clicked renders the search bar conditionally */}
@@ -43,7 +47,7 @@ const Navbar = ({ currentUser }) => {
         <span>Twisted</span>
         <Link to={'/'} onClick={refreshPage}>
           <img className='mask mask-circle bg-white ' src={twistedTrout} />
-        </Link>s
+        </Link>
         <span>Trout</span>
       </div>
       <div className='menu menu-horizontal icons-wrapper'>
@@ -58,8 +62,8 @@ const Navbar = ({ currentUser }) => {
         </Link>
         {/* conditionally renders the logout button based on the state passed in from the app jsx component */}
         {Auth.loggedIn() ? (
-          <div className='tooltip' data-tip='Logout'>
-            <img className='h-8 w-8 icons' src={logout} onClick={Auth.logout} />
+          <div className='tooltip' data-tip='Logout'> 
+            <img className='h-8 w-8 icons' src={logout} onClick={() => Auth.logout()} />
           </div>
         ) : (
           <></>

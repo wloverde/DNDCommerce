@@ -30,11 +30,7 @@ const Login = () => {
       Auth.login(data.login.token);
     } catch (error) {
       console.error(error);
-    }
-    setFormState({
-      email: '',
-      password: '',
-    });
+    } 
   };
 
   return (
