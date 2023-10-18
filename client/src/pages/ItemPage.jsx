@@ -10,7 +10,7 @@ import {
 } from '../../utils/actions';
 import { QUERY_PRODUCTS } from '../../utils/queries';
 import { idbPromise } from '../../utils/helpers';
-import spinner from '../assets/images/spinner.gif'; 
+import spinner from '../assets/images/spinner.gif';  
 
 function ItemPage() {
   const [state, dispatch] = useStoreContext();
@@ -20,7 +20,14 @@ function ItemPage() {
 
   const { loading, data } = useQuery(QUERY_PRODUCTS);
 
-  const { products, cart } = state;
+  const { products  } = state;
+
+  function refreshPage() {
+    setTimeout(() => {
+      window.location.reload(false);
+    }, 500);
+    console.log("page to reload");
+  }
 
   useEffect(() => {   
     // already in global store
@@ -28,7 +35,7 @@ function ItemPage() {
       setCurrentProduct(products.find((product) => product._id === id)); 
     }
     // retrieved from server
-    else if (data) {
+    else if (data) { 
       dispatch({
         type: UPDATE_PRODUCTS,
         products: data.products,
@@ -49,25 +56,36 @@ function ItemPage() {
     }
   }, [products, data, loading, dispatch, id]);
 
-  const addToCart = () => {
-    const itemInCart = cart.find((cartItem) => cartItem._id === id);
-    if (itemInCart) {
+  const addToCart = () => { 
+
+    const tempProduct = {...currentProduct, purchaseQuantity:0};
+     delete tempProduct.__typename;
+     delete tempProduct.category;
+     delete tempProduct.description;     
+     setCurrentProduct(tempProduct); 
+
+
+    if (tempProduct) { 
       dispatch({
         type: UPDATE_CART_QUANTITY,
         _id: id,
-        purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
+        purchaseQuantity: parseInt(tempProduct.purchaseQuantity) + 1,
       });
+
       idbPromise('cart', 'put', {
-        ...itemInCart,
-        purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
+        ...tempProduct,
+        purchaseQuantity: parseInt(tempProduct.purchaseQuantity) + 1,
       });
     } else {   
+      
       dispatch({
         type: ADD_TO_CART,
-        product: { ...currentProduct, purchaseQuantity: 1 },
+        product: { ...tempProduct},
       });
-      idbPromise('cart', 'put', { ...currentProduct, purchaseQuantity: 1 });
+      idbPromise('cart', 'put', { ...tempProduct });
     }
+
+    refreshPage();
   };
 
   const removeFromCart = () => {
@@ -79,9 +97,10 @@ function ItemPage() {
     idbPromise('cart', 'delete', { ...currentProduct });
   };
 
+   
   return (
     <>
-      {currentProduct && cart ? (
+      {currentProduct? (
         <div className="container card card-side shadow-xl">
           <figure><img
             src={currentProduct.image}
@@ -98,7 +117,6 @@ function ItemPage() {
 
             <button className="btn" onClick={addToCart}>Add to Cart</button>
             <button className="btn"
-              disabled={!cart.find((p) => p._id === currentProduct._id)}
               onClick={removeFromCart}
             >
               Remove from Cart
@@ -108,7 +126,7 @@ function ItemPage() {
           </div>
         </div>
       ) : null}
-      {loading ? <img src={spinner} alt="loading" /> : null}  
+      {loading ? <img src={spinner} alt="loading" /> : null}   
     </>
   );
 }
