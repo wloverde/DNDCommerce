@@ -1,23 +1,36 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useQuery } from "@apollo/client";
+import { useParams } from "react-router-dom";
+import { QUERY_PRODUCT } from "../../utils/queries";
+import ItemCard from "../components/ItemCard/ItemCard";
 
 function ItemPage() {
-    const [item, setItem] = useState({});
-    const { itemId } = useParams();
+  const { itemId } = useParams();
 
-    useEffect(() => {
-        fetch(`/api/items/${itemId}`)
-            .then(response => response.json())
-            .then(data => setItem(data));
-    }, [itemId]);
+  const {
+    loading,error,data,
+  } = useQuery(QUERY_PRODUCT, {
+    variables: { _id: itemId },
+  });
 
-    return (
-        <div>
-            <h1>{item.name}</h1>
-            <p>{item.description}</p>
-            <p>Price: {item.price}</p>
-        </div>
-    );
+  if (loading){
+    return <span className='loading loading-dots loading-lg'></span>;
+  }
+  console.log(data);
+
+
+
+  return (
+    <ItemCard
+    key={data.product._id}
+    itemId={data.product._id}
+    itemName={data.product.name}
+    itemImage={data.product.image}
+    itemPrice={data.product.price}
+    itemStock={data.product.quantity}
+    itemDescription={data.product.description}
+  />
+  );
 }
 
 export default ItemPage;

@@ -76,10 +76,10 @@ const Navbar = ({ setSelectedCategory, isLoggedIn, currentUser }) => {
       </div>
       <div className='line-break' />
       <div className='category-list'>
-        <ul className='categories'>
+        <ul className='categories tabs'>
           {/* render the cagetories with a query */}
           {dataCategories.categories.map((category) => (
-            <li key={category._id} onClick={() => categoryClick(category)}>
+            <li className='tab tab-lifted text-xl text-white' key={category._id} onClick={() => categoryClick(category)}>
               {category.name}
             </li>
           ))}
