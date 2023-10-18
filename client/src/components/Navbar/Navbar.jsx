@@ -79,7 +79,7 @@ const Navbar = ({ setSelectedCategory, isLoggedIn, currentUser }) => {
         <ul className='categories tabs'>
           {/* render the cagetories with a query */}
           {dataCategories.categories.map((category) => (
-            <li className='tab tab-lifted text-xl' key={category._id} onClick={() => categoryClick(category)}>
+            <li className='tab tab-lifted text-xl text-white' key={category._id} onClick={() => categoryClick(category)}>
               {category.name}
             </li>
           ))}
