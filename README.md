@@ -10,7 +10,8 @@ An E-commerce website designed around Dungeons and Dragons that allows users to 
 - [Questions](#questions)
 
 ## Installation
-To begin installation please follow the following instructions:
+
+To begin installation (for development) please follow the following instructions:
 
 1. Please open the CLI(command line interface)
 
@@ -26,7 +27,7 @@ To begin installation please follow the following instructions:
 
 ## Usage
 
-To run this DND Commerce pplication, please visit  https://dnd-commerce-3caad9c94c17.herokuapp.com/ .
+To run this DND Commerce application, please visit  https://dnd-commerce-3caad9c94c17.herokuapp.com/ .
 
 Once there, if this is your first time, please click on the profile button (the upper right hand corner), then the fill in the form and click on the sign up button to make an account!
 
@@ -71,12 +72,13 @@ N/A
 If you have any questions, please here is our contact info:
 
 ### Emails: 
+----------
 
-Aidan Morrow:
+Aidan Morrow: aidancmorrow1@gmail.com
 
-Alexander Olivares:
+Alexander Olivares: alexander.olivares1310@gmail.com
 
-Andrew Loverde:
+Andrew Loverde: w.andrew.loverde@gmail.com 
 
 Frank Zhao: frank.zhao93@gmail.com
 
@@ -91,7 +93,4 @@ Frank Zhao: frank.zhao93@gmail.com
 
 [woverde](https://github.com/wloverde)
 
-[fzhao888](https://github.com/fzhao888)
-
-# Heroku Deployment
-https://dnd-commerce-3caad9c94c17.herokuapp.com/
+[fzhao888](https://github.com/fzhao888) 
