@@ -27,7 +27,7 @@ function ItemPage() {
     // already in global store
     if (products.length) {
       const tempProduct = products.find((product) => product._id === id)
-      const {__typename, category, description,...rest } = tempProduct;
+      const {__typename, category, ...rest } = tempProduct;
       setCurrentProduct({...rest}); 
     }
     // retrieved from server
