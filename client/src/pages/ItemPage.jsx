@@ -85,7 +85,7 @@ function ItemPage() {
   return (
     <>
       {currentProduct && cart ? (
-        <div className="item-card container shadow-xl">
+        <div className="item-card  shadow-xl">
             <div className='justify-end'><Link to="/">← Back to Products</Link></div>
           <figure className='img'><img
             src={currentProduct.image}
