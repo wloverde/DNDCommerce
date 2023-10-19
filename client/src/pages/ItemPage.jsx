@@ -11,6 +11,7 @@ import {
 import { QUERY_PRODUCTS } from '../../utils/queries';
 import { idbPromise } from '../../utils/helpers';
 import spinner from '../assets/images/spinner.gif';  
+import './ItemPage.css';
 
 function ItemPage() {
   const [state, dispatch] = useStoreContext();
@@ -20,22 +21,17 @@ function ItemPage() {
 
   const { loading, data } = useQuery(QUERY_PRODUCTS);
 
-  const { products  } = state;
-
-  function refreshPage() {
-    setTimeout(() => {
-      window.location.reload(false);
-    }, 500);
-    console.log("page to reload");
-  }
+  const { products, cart } = state;
 
   useEffect(() => {   
     // already in global store
     if (products.length) {
-      setCurrentProduct(products.find((product) => product._id === id)); 
+      const tempProduct = products.find((product) => product._id === id)
+      const {__typename, category, description,...rest } = tempProduct;
+      setCurrentProduct({...rest}); 
     }
     // retrieved from server
-    else if (data) { 
+    else if (data) {
       dispatch({
         type: UPDATE_PRODUCTS,
         products: data.products,
@@ -56,36 +52,25 @@ function ItemPage() {
     }
   }, [products, data, loading, dispatch, id]);
 
-  const addToCart = () => { 
-
-    const tempProduct = {...currentProduct, purchaseQuantity:0};
-     delete tempProduct.__typename;
-     delete tempProduct.category;
-     delete tempProduct.description;     
-     setCurrentProduct(tempProduct); 
-
-
-    if (tempProduct) { 
+  const addToCart = () => {
+    const itemInCart = cart.find((cartItem) => cartItem._id === id);
+    if (itemInCart) { 
       dispatch({
         type: UPDATE_CART_QUANTITY,
         _id: id,
-        purchaseQuantity: parseInt(tempProduct.purchaseQuantity) + 1,
+        purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
       });
-
       idbPromise('cart', 'put', {
-        ...tempProduct,
-        purchaseQuantity: parseInt(tempProduct.purchaseQuantity) + 1,
+        ...itemInCart,
+        purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
       });
     } else {   
-      
       dispatch({
         type: ADD_TO_CART,
-        product: { ...tempProduct},
+        product: { ...currentProduct, purchaseQuantity: 1 },
       });
-      idbPromise('cart', 'put', { ...tempProduct });
+      idbPromise('cart', 'put', { ...currentProduct, purchaseQuantity: 1 });
     }
-
-    refreshPage();
   };
 
   const removeFromCart = () => {
@@ -97,17 +82,17 @@ function ItemPage() {
     idbPromise('cart', 'delete', { ...currentProduct });
   };
 
-   
   return (
     <>
-      {currentProduct? (
-        <div className="container card card-side shadow-xl">
-          <figure><img
+      {currentProduct && cart ? (
+        <div className="item-card  shadow-xl">
+            <div className='justify-end'><Link to="/">← Back to Products</Link></div>
+          <figure className='img'><img
             src={currentProduct.image}
             alt={currentProduct.name}
           /></figure>
           <div className="card-body">
-          <div className='justify-end'><Link to="/">← Back to Products</Link></div>
+        
           <h2 className="card-title" >{currentProduct.name}</h2>
 
           <p>{currentProduct.description}</p>
@@ -117,6 +102,7 @@ function ItemPage() {
 
             <button className="btn" onClick={addToCart}>Add to Cart</button>
             <button className="btn"
+              disabled={!cart.find((p) => p._id === currentProduct._id)}
               onClick={removeFromCart}
             >
               Remove from Cart
@@ -126,7 +112,7 @@ function ItemPage() {
           </div>
         </div>
       ) : null}
-      {loading ? <img src={spinner} alt="loading" /> : null}   
+      {loading ? <img src={spinner} alt="loading" /> : null}  
     </>
   );
 }
